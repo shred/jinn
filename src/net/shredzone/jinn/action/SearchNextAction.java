@@ -42,18 +42,54 @@
  * ***** END LICENSE BLOCK *****
  */
  
-package net.shredzone.jinn;
+package net.shredzone.jinn.action;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
+import net.shredzone.jinn.Registry;
+import net.shredzone.jinn.i18n.L;
+import net.shredzone.jinn.pool.ImgPool;
 
 /**
- * This interface is some kind of stylesheet with global constants.
+ * Find the next or previous occurance of a search string.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Style.java,v 1.1 2005/11/14 12:14:35 shred Exp $
+ * @version $Id:$
  */
-public interface Style {
-
-  /** Version */
-  public static final String VERSION = "0.2 alpha";
-
+public class SearchNextAction extends BaseAction {
+  public static boolean NEXT = false;
+  public static boolean PREVIOUS = true;
+  
+  private final Registry registry;
+  private final boolean direction;
+  
+  /**
+   * Create a new SearchAction.
+   */
+  public SearchNextAction( Registry registry, boolean prev ) {
+    super (
+      L.tr( prev ? "action.search.prev" : "action.search.next" ),
+      ImgPool.get( "search.png" ),
+      L.tr( prev ? "action.search.prev.tt" : "action.search.next.tt" ),
+      ( prev ? 
+        KeyStroke.getKeyStroke( KeyEvent.VK_K, ActionEvent.CTRL_MASK ) :
+        KeyStroke.getKeyStroke( KeyEvent.VK_J, ActionEvent.CTRL_MASK )
+      )
+    );
+    this.registry = registry;
+    this.direction = prev;
+  }
+  
+  /**
+   * The action implementation itself.
+   * 
+   * @param  e      ActionEvent, may be null if directly invoked
+   */
+  public void perform( ActionEvent e ) {
+    
+  }
+  
 }

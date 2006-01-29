@@ -46,6 +46,7 @@ package net.shredzone.jinn.action;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.BufferedOutputStream;
@@ -56,6 +57,7 @@ import java.io.OutputStream;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 import net.shredzone.jinn.JinnRegistryKeys;
 import net.shredzone.jinn.Registry;
@@ -85,7 +87,7 @@ public class SaveAsAction extends AsyncBaseAction {
       L.tr( "action.saveas" ),
       ImgPool.get( "save-as.png" ),
       L.tr( "action.saveas.tt" ),
-      null
+      KeyStroke.getKeyStroke( KeyEvent.VK_A, ActionEvent.CTRL_MASK )
     );
 
     this.registry = registry;

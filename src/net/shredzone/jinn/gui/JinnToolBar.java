@@ -77,10 +77,13 @@ public class JinnToolBar extends JToolBar {
     addSeparator();
     add( createButton( JinnRegistryKeys.ACTION_NEXT ) );
     add( createButton( JinnRegistryKeys.ACTION_RESET ) );
+    add( createButton( JinnRegistryKeys.ACTION_GOTO ) );
     addSeparator();
     add( createButton( JinnRegistryKeys.ACTION_CUT ) );
     add( createButton( JinnRegistryKeys.ACTION_COPY ) );
     add( createButton( JinnRegistryKeys.ACTION_PASTE ) );
+    addSeparator();
+    add( createButton( JinnRegistryKeys.ACTION_SEARCH ) );
     addSeparator();
     
     add( Box.createGlue() );

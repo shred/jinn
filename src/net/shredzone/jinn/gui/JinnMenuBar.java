@@ -91,11 +91,21 @@ public class JinnMenuBar extends JMenuBar {
       jmEdit.add( getItem( JinnRegistryKeys.ACTION_COPY ) );
       jmEdit.add( getItem( JinnRegistryKeys.ACTION_PASTE ) );
       jmEdit.addSeparator();
-      jmEdit.add( getItem( JinnRegistryKeys.ACTION_NEXT ) );
       jmEdit.add( getItem( JinnRegistryKeys.ACTION_RESET ) );
     }
     add( jmEdit );
     
+    final JMenu jmSearch = SwingUtils.createJMenu( L.tr("menu.search") );
+    {
+      jmSearch.add( getItem( JinnRegistryKeys.ACTION_SEARCH ) );
+      jmSearch.add( getItem( JinnRegistryKeys.ACTION_SEARCH_NEXT ) );
+      jmSearch.add( getItem( JinnRegistryKeys.ACTION_SEARCH_PREV ) );
+      jmSearch.addSeparator();
+      jmSearch.add( getItem( JinnRegistryKeys.ACTION_NEXT ) );
+      jmSearch.add( getItem( JinnRegistryKeys.ACTION_GOTO ) );
+    }
+    add( jmSearch );
+
     add( Box.createGlue() );
     
     final JMenu jmHelp = SwingUtils.createJMenu( L.tr("menu.help") );

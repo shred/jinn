@@ -97,6 +97,18 @@ public interface JinnRegistryKeys {
   /** RedoAction: Redo change */
   public static final String ACTION_REDO = "action.redo";
 
+  /** SearchAction: Search for text */
+  public static final String ACTION_SEARCH = "action.search";
+
+  /** SearchNextAction: Search for next occurence */
+  public static final String ACTION_SEARCH_NEXT = "action.search.next";
+
+  /** SearchNextAction: Search for previous occurence */
+  public static final String ACTION_SEARCH_PREV = "action.search.prev";
+
+  /** GotoAction: Goto a key */
+  public static final String ACTION_GOTO = "action.goto";
+
   /** AboutAction: Show an about dialog */
   public static final String ACTION_ABOUT = "action.about";
 

@@ -54,6 +54,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import net.shredzone.jinn.action.AboutAction;
+import net.shredzone.jinn.action.GotoAction;
 import net.shredzone.jinn.action.MergeAction;
 import net.shredzone.jinn.action.NewAction;
 import net.shredzone.jinn.action.NextAction;
@@ -61,6 +62,8 @@ import net.shredzone.jinn.action.OpenAction;
 import net.shredzone.jinn.action.QuitAction;
 import net.shredzone.jinn.action.SaveAction;
 import net.shredzone.jinn.action.SaveAsAction;
+import net.shredzone.jinn.action.SearchAction;
+import net.shredzone.jinn.action.SearchNextAction;
 import net.shredzone.jinn.gui.JinnPane;
 import net.shredzone.jinn.i18n.L;
 
@@ -169,6 +172,10 @@ public class Jinn {
     registry.put( JinnRegistryKeys.ACTION_SAVE,   new SaveAction( registry ) );
     registry.put( JinnRegistryKeys.ACTION_SAVEAS, new SaveAsAction( registry ) );
     registry.put( JinnRegistryKeys.ACTION_NEXT,   new NextAction( registry ) );
+    registry.put( JinnRegistryKeys.ACTION_SEARCH, new SearchAction( registry ) );
+    registry.put( JinnRegistryKeys.ACTION_SEARCH_NEXT, new SearchNextAction( registry, SearchNextAction.NEXT ) );
+    registry.put( JinnRegistryKeys.ACTION_SEARCH_PREV, new SearchNextAction( registry, SearchNextAction.PREVIOUS ) );
+    registry.put( JinnRegistryKeys.ACTION_GOTO,   new GotoAction( registry ) );
     registry.put( JinnRegistryKeys.ACTION_ABOUT,  new AboutAction( registry ) );
   }
 

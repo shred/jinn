@@ -42,18 +42,47 @@
  * ***** END LICENSE BLOCK *****
  */
  
-package net.shredzone.jinn;
+package net.shredzone.jinn.action;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
+import net.shredzone.jinn.Registry;
+import net.shredzone.jinn.i18n.L;
+import net.shredzone.jinn.pool.ImgPool;
 
 /**
- * This interface is some kind of stylesheet with global constants.
+ * Go to a key.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Style.java,v 1.1 2005/11/14 12:14:35 shred Exp $
+ * @version $Id:$
  */
-public interface Style {
-
-  /** Version */
-  public static final String VERSION = "0.2 alpha";
-
+public class GotoAction extends BaseAction {
+  private static final long serialVersionUID = -6185052702783447904L;
+  private final Registry registry;
+  
+  /**
+   * Create a new GotoAction.
+   */
+  public GotoAction( Registry registry ) {
+    super (
+      L.tr( "action.goto" ),
+      ImgPool.get( "goto.png" ),
+      L.tr( "action.goto.tt" ),
+      KeyStroke.getKeyStroke( KeyEvent.VK_G, ActionEvent.CTRL_MASK )
+    );
+    this.registry = registry;
+  }
+  
+  /**
+   * The action implementation itself.
+   * 
+   * @param  e      ActionEvent, may be null if directly invoked
+   */
+  public void perform( ActionEvent e ) {
+    
+  }
+  
 }
