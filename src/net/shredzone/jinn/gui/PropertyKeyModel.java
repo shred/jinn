@@ -102,6 +102,26 @@ public class PropertyKeyModel implements ListModel {
   public Object getElementAt( int index ) {
     return lKeys.get( index );
   }
+  
+  /**
+   * Check if a key is known to this model.
+   * 
+   * @param  key    Key to be checked
+   * @return true: key is known, false: key is unknown.
+   */
+  public boolean hasKey( String key ) {
+    return lKeys.contains( key );
+  }
+  
+  /**
+   * Find a key and return its position.
+   * 
+   * @param key     Key to be found
+   * @return  Index of this key, or -1 if the key was not found
+   */
+  public int findKey( String key ) {
+    return lKeys.indexOf( key );
+  }
 
   /**
    * Add a ListDataListener which is notified when this model changes.

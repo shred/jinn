@@ -46,10 +46,15 @@ package net.shredzone.jinn.action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import net.shredzone.jinn.JinnRegistryKeys;
 import net.shredzone.jinn.Registry;
+import net.shredzone.jinn.gui.PropertyKeyModel;
 import net.shredzone.jinn.i18n.L;
 import net.shredzone.jinn.pool.ImgPool;
 
@@ -74,6 +79,14 @@ public class GotoAction extends BaseAction {
       KeyStroke.getKeyStroke( KeyEvent.VK_G, ActionEvent.CTRL_MASK )
     );
     this.registry = registry;
+
+    setEnabled( registry.get( JinnRegistryKeys.MODEL_TRANSLATION ) != null );
+    
+    registry.addPropertyChangeListener( JinnRegistryKeys.MODEL_TRANSLATION, new PropertyChangeListener() {
+      public void propertyChange( PropertyChangeEvent evt ) {
+        setEnabled( evt.getNewValue() != null );
+      }
+    });
   }
   
   /**
@@ -82,7 +95,28 @@ public class GotoAction extends BaseAction {
    * @param  e      ActionEvent, may be null if directly invoked
    */
   public void perform( ActionEvent e ) {
-    
+    String input = JOptionPane.showInputDialog(
+        getFrame( e ),
+        L.tr( "goto.msg" ),
+        L.tr( "goto.title" ),
+        JOptionPane.QUESTION_MESSAGE
+    );
+
+    if( input!=null ) {
+      final PropertyKeyModel keyModel = (PropertyKeyModel) registry.get( JinnRegistryKeys.MODEL_REFERENCE_KEY );
+      if( keyModel==null ) return;
+      
+      if( keyModel.hasKey( input ) ) {
+        registry.put( JinnRegistryKeys.CURRENT_KEY, input );
+      }else {
+        JOptionPane.showMessageDialog(
+            getFrame( e ),
+            L.tr( "goto.notfound.msg" ),
+            L.tr( "goto.notfound.title" ),
+            JOptionPane.INFORMATION_MESSAGE
+        );
+      }
+    }
   }
   
 }
