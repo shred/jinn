@@ -50,6 +50,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 
 import net.shredzone.jinn.Registry;
+import net.shredzone.jinn.gui.SearchPane;
 import net.shredzone.jinn.i18n.L;
 import net.shredzone.jinn.pool.ImgPool;
 
@@ -82,7 +83,7 @@ public class SearchAction extends BaseAction {
    * @param  e      ActionEvent, may be null if directly invoked
    */
   public void perform( ActionEvent e ) {
-    
+    SearchPane.showSearchDialog( registry, getFrame( e ), "Search for?" );
   }
   
 }

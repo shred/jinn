@@ -138,4 +138,12 @@ public interface JinnRegistryKeys {
   /** PropertyKeyModel or PropertyKeyRefModel for translation */
   public static final String MODEL_REFERENCE_KEY = "model.referencekey";
 
+  /*--- Search and Replace ---------------------------------------------- */
+  
+  /** The current search term */
+  public static final String SEARCH_TERM = "search.term";
+  
+  /** Match case? */
+  public static final String SEARCH_CASE_SENSITIVE = "search.casesensitive";
+  
 }
