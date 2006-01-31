@@ -71,7 +71,8 @@ import javax.swing.undo.UndoManager;
 
 import net.shredzone.jinn.JinnRegistryKeys;
 import net.shredzone.jinn.Registry;
-import net.shredzone.jinn.action.ResetAction;
+import net.shredzone.jinn.action.CleanAction;
+import net.shredzone.jinn.action.RevertAction;
 import net.shredzone.jinn.action.TextComponentAction;
 import net.shredzone.jinn.i18n.L;
 import net.shredzone.jinn.property.Line;
@@ -112,6 +113,8 @@ public class JinnPane extends JPanel {
     doc.addUndoableEditListener( undoManager );
     doc.addDocumentListener( new MyDocumentListener() );
     addActions( registry, jtaTranslation, jtaReference, undoManager );
+    
+    registry.put( JinnRegistryKeys.TRANSLATION_TEXT, jtaTranslation );
     
     //--- Build GUI ---
     build();
@@ -181,7 +184,7 @@ public class JinnPane extends JPanel {
         if( selTransLine != null ) {
           final String val = selTransLine.getValue();
           jtaTranslation.setText( val );
-          jtaTranslation.selectAll();
+//          jtaTranslation.selectAll();
           undoManager.discardAllEdits();
           jtaTranslation.grabFocus();
         }
@@ -314,7 +317,8 @@ public class JinnPane extends JPanel {
     registry.put( JinnRegistryKeys.ACTION_PASTE, new TextComponentAction.PasteTextAction( comp ) );
     registry.put( JinnRegistryKeys.ACTION_UNDO, new TextComponentAction.UndoTextAction( comp, undo ) );
     registry.put( JinnRegistryKeys.ACTION_REDO, new TextComponentAction.RedoTextAction( comp, undo ) );
-    registry.put( JinnRegistryKeys.ACTION_RESET, new ResetAction( registry, comp, ref, undo ) );
+    registry.put( JinnRegistryKeys.ACTION_REVERT, new RevertAction( registry, comp, ref, undo ) );
+    registry.put( JinnRegistryKeys.ACTION_CLEAN, new CleanAction( registry, comp, ref, undo ) );
   }
   
 

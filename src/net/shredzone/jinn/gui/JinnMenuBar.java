@@ -91,7 +91,8 @@ public class JinnMenuBar extends JMenuBar {
       jmEdit.add( getItem( JinnRegistryKeys.ACTION_COPY ) );
       jmEdit.add( getItem( JinnRegistryKeys.ACTION_PASTE ) );
       jmEdit.addSeparator();
-      jmEdit.add( getItem( JinnRegistryKeys.ACTION_RESET ) );
+      jmEdit.add( getItem( JinnRegistryKeys.ACTION_REVERT ) );
+      jmEdit.add( getItem( JinnRegistryKeys.ACTION_CLEAN ) );
     }
     add( jmEdit );
     

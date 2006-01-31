@@ -62,29 +62,28 @@ import net.shredzone.jinn.pool.ImgPool;
 import net.shredzone.jinn.property.PropertyModel;
 
 /**
- * Reset to the reference text.
+ * Revert to the reference text.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: ResetAction.java,v 1.1 2005/11/14 12:14:35 shred Exp $
+ * @version $Id:$
  */
-public class ResetAction extends BaseAction {
-  private static final long serialVersionUID = -5001726514056771893L;
-
+public class RevertAction extends BaseAction {
+  private static final long serialVersionUID = 7145249004953005243L;
   protected final Registry registry;
   protected final JTextComponent editor;
   protected final JTextComponent reference;
   protected final UndoManager undo;
   
   /**
-   * Create a new ResetAction.
+   * Create a new RevertAction.
    *
    * @param   registry    The application's Registry
    */
-  public ResetAction( Registry registry, JTextComponent editor, JTextComponent reference, UndoManager undo ) {
+  public RevertAction( Registry registry, JTextComponent editor, JTextComponent reference, UndoManager undo ) {
     super (
-      L.tr( "action.reset" ),
-      ImgPool.get( "reset.png" ),
-      L.tr( "action.reset.tt" ),
+      L.tr( "action.revert" ),
+      ImgPool.get( "revert.png" ),
+      L.tr( "action.revert.tt" ),
       KeyStroke.getKeyStroke( KeyEvent.VK_B, ActionEvent.CTRL_MASK )
     );
 

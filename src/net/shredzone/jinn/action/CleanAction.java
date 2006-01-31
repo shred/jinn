@@ -42,65 +42,70 @@
  * ***** END LICENSE BLOCK *****
  */
  
-package net.shredzone.jinn.gui;
+package net.shredzone.jinn.action;
 
-import javax.swing.Action;
-import javax.swing.Box;
-import javax.swing.JButton;
-import javax.swing.JToolBar;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.KeyStroke;
+import javax.swing.text.JTextComponent;
+import javax.swing.undo.UndoManager;
 
 import net.shredzone.jinn.JinnRegistryKeys;
 import net.shredzone.jinn.Registry;
 import net.shredzone.jinn.i18n.L;
-import net.shredzone.jshred.swing.JToolbarButton;
-
+import net.shredzone.jinn.pool.ImgPool;
 
 /**
- * This is Jinn's ToolBar.
+ * Clean the translation text.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnToolBar.java,v 1.7 2005/11/14 12:14:35 shred Exp $
+ * @version $Id:$
  */
-public class JinnToolBar extends JToolBar {
-  private static final long serialVersionUID = -5415692905814260570L;
-  private final Registry registry;
+public class CleanAction extends BaseAction {
+  private static final long serialVersionUID = -5001726514056771893L;
 
-  public JinnToolBar( Registry registry ) {
-    super( L.tr("generic.toolbar") );
-    setRollover( true );
+  protected final Registry registry;
+  protected final JTextComponent editor;
+  protected final JTextComponent reference;
+  protected final UndoManager undo;
+  
+  /**
+   * Create a new CleanAction.
+   *
+   * @param   registry    The application's Registry
+   */
+  public CleanAction( Registry registry, JTextComponent editor, JTextComponent reference, UndoManager undo ) {
+    super (
+      L.tr( "action.clean" ),
+      ImgPool.get( "clean.png" ),
+      L.tr( "action.clean.tt" ),
+      KeyStroke.getKeyStroke( KeyEvent.VK_N, ActionEvent.CTRL_MASK )
+    );
 
-    this.registry = registry;
-
-    add( createButton( JinnRegistryKeys.ACTION_OPEN ) );
-    add( createButton( JinnRegistryKeys.ACTION_MERGE ) );
-    add( createButton( JinnRegistryKeys.ACTION_SAVE ) );
-    addSeparator();
-    add( createButton( JinnRegistryKeys.ACTION_REVERT ) );
-    add( createButton( JinnRegistryKeys.ACTION_CLEAN ) );
-    add( createButton( JinnRegistryKeys.ACTION_NEXT ) );
-    add( createButton( JinnRegistryKeys.ACTION_GOTO ) );
-    addSeparator();
-    add( createButton( JinnRegistryKeys.ACTION_CUT ) );
-    add( createButton( JinnRegistryKeys.ACTION_COPY ) );
-    add( createButton( JinnRegistryKeys.ACTION_PASTE ) );
-    addSeparator();
-    add( createButton( JinnRegistryKeys.ACTION_SEARCH ) );
-    addSeparator();
+    this.registry  = registry;
+    this.editor    = editor;
+    this.reference = reference;
+    this.undo      = undo;
     
-    add( Box.createGlue() );
-
-    add( createButton( JinnRegistryKeys.ACTION_ABOUT ) );
+    setEnabled( registry.get( JinnRegistryKeys.MODEL_TRANSLATION ) != null );
+    
+    registry.addPropertyChangeListener( JinnRegistryKeys.MODEL_TRANSLATION, new PropertyChangeListener() {
+      public void propertyChange( PropertyChangeEvent evt ) {
+        setEnabled( evt.getNewValue() != null );
+      }
+    });
   }
   
   /**
-   * Create a JButton for a registry Action key, that is suitable for
-   * JToolBar usage.
+   * The action implementation itself.
    * 
-   * @param key   Action key to be used
-   * @return  Generated JButton
+   * @param  e      ActionEvent, may be null if directly invoked
    */
-  protected JButton createButton( String key ) {
-    return new JToolbarButton( (Action) registry.get( key ) );
+  public void perform( ActionEvent e ) {
+    editor.setText( "" );
   }
   
 }
