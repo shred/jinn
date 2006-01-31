@@ -79,8 +79,11 @@ public interface JinnRegistryKeys {
   /** NextAction: Jump to the next untranslated string */
   public static final String ACTION_NEXT = "action.next";
 
-  /** ResetAction: Reset translation to the reference string */
-  public static final String ACTION_RESET = "action.reset";
+  /** RevertAction: Revert translation to the reference string */
+  public static final String ACTION_REVERT = "action.revert";
+
+  /** CleanAction: Clean translation */
+  public static final String ACTION_CLEAN = "action.clean";
 
   /** CutAction: Cut marked text */
   public static final String ACTION_CUT = "action.cut";
@@ -112,6 +115,10 @@ public interface JinnRegistryKeys {
   /** AboutAction: Show an about dialog */
   public static final String ACTION_ABOUT = "action.about";
 
+  /*--- GUI Objects ----------------------------------------------------- */
+  
+  /** JTextComponent containing the current translation */
+  public static final String TRANSLATION_TEXT = "gui.translationtext";
   
   /*--- Files ----------------------------------------------------------- */
   
@@ -143,6 +150,9 @@ public interface JinnRegistryKeys {
   /** The current search term */
   public static final String SEARCH_TERM = "search.term";
   
+  /** The current replacement */
+  public static final String SEARCH_REPLACEMENT = "search.replace";
+
   /** Match case? */
   public static final String SEARCH_CASE_SENSITIVE = "search.casesensitive";
   

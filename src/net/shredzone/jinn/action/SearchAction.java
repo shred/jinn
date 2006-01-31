@@ -60,21 +60,20 @@ import net.shredzone.jinn.pool.ImgPool;
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
  * @version $Id:$
  */
-public class SearchAction extends BaseAction {
+public class SearchAction extends BaseSearchAction {
   private static final long serialVersionUID = 3478879399066426698L;
-  private final Registry registry;
   
   /**
    * Create a new SearchAction.
    */
   public SearchAction( Registry registry ) {
     super (
+      registry,
       L.tr( "action.search" ),
       ImgPool.get( "search.png" ),
       L.tr( "action.search.tt" ),
       KeyStroke.getKeyStroke( KeyEvent.VK_H, ActionEvent.CTRL_MASK )
     );
-    this.registry = registry;
   }
   
   /**
@@ -83,7 +82,13 @@ public class SearchAction extends BaseAction {
    * @param  e      ActionEvent, may be null if directly invoked
    */
   public void perform( ActionEvent e ) {
-    SearchPane.showSearchDialog( registry, getFrame( e ), "Search for?" );
+    int rc = SearchPane.showSearchDialog( registry, getFrame( e ), "Search for?" );
+    
+    if( rc==SearchPane.SEARCH_OPTION ) {
+      boolean found = searchNext();
+      if(! found)
+        showNotFoundMessage( getFrame(e) );
+    }
   }
   
 }

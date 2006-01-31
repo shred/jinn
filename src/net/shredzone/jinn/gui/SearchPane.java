@@ -70,9 +70,15 @@ import net.shredzone.jshred.swing.JLabelGroup;
 public class SearchPane extends JPanel {
   private static final long serialVersionUID = 9034069296224720962L;
 
+  public final static int SEARCH_OPTION = 0;
+  public final static int REPLACE_OPTION = 1;
+  public final static int REPLACEALL_OPTION = 2;
+  public final static int CLOSED_OPTION = JOptionPane.CLOSED_OPTION;
+  
   private JTextField jtfTerm;
   private JCheckBox  jcbCaseSensitive;
   private JTextField jtfReplace;
+  private Registry   registry;
 
   /**
    * Create a new main Jinn pane, using the given Registry.
@@ -82,6 +88,8 @@ public class SearchPane extends JPanel {
   public SearchPane( Registry registry ) {
     //--- Build GUI ---
     build();
+    this.registry = registry;
+    setup();
     
     //--- Listen for Property Changes ---
     new MyPropertyChangeListener( registry );
@@ -164,18 +172,40 @@ public class SearchPane extends JPanel {
   }
   
   /**
+   * Set up the gui with the registry content.
+   */
+  protected void setup() {
+    String term = registry.getString( JinnRegistryKeys.SEARCH_TERM);
+    if( term!=null ) setSearchTerm( term );
+    Boolean val = (Boolean) registry.get( JinnRegistryKeys.SEARCH_CASE_SENSITIVE );
+    if( val!=null ) setCaseSensitive( val.booleanValue() );
+    String repl = registry.getString( JinnRegistryKeys.SEARCH_REPLACEMENT );
+    if( repl!=null) setReplacement( repl );
+  }
+  
+  /**
+   * Write the current settings into the registry.
+   */
+  protected void commit() {
+    registry.put( JinnRegistryKeys.SEARCH_TERM          , getSearchTerm() );
+    registry.put( JinnRegistryKeys.SEARCH_CASE_SENSITIVE, new Boolean( isCaseSensitive() ) );
+    registry.put( JinnRegistryKeys.SEARCH_REPLACEMENT   , getReplacement() );
+  }
+  
+  /**
    * Show the search dialog.
    * 
    * @param registry  Registry to be used
    * @param parent    Parent component
    * @param title     Title of the search dialog
-   * @return  A return value
+   * @return  SEARCH_OPTION, REPLACE_OPTION, REPLACEALL_OPTION, or CLOSED_OPTION
    */
   public static int showSearchDialog( Registry registry, Component parent, String title ) {
     Object[] options = { "Search", "Replace", "Replace All", "Cancel" };
     
     SearchPane pane = new SearchPane( registry );
-    return JOptionPane.showOptionDialog(
+    
+    int rc = JOptionPane.showOptionDialog(
         parent,
         pane,
         title,
@@ -185,6 +215,16 @@ public class SearchPane extends JPanel {
         options,
         options[0]
     );
+    
+    if( rc==3 || rc==JOptionPane.CLOSED_OPTION ) { // CANCEL
+      rc = CLOSED_OPTION;
+    }
+    
+    if( rc!=CLOSED_OPTION ) {
+      pane.commit();
+    }
+    
+    return rc;
   }
   
   
@@ -204,6 +244,7 @@ public class SearchPane extends JPanel {
     public MyPropertyChangeListener( Registry registry ) {
       registry.addPropertyChangeListener( JinnRegistryKeys.SEARCH_TERM,           this );
       registry.addPropertyChangeListener( JinnRegistryKeys.SEARCH_CASE_SENSITIVE, this );
+      registry.addPropertyChangeListener( JinnRegistryKeys.SEARCH_REPLACEMENT,    this );
     }
 
     /**
@@ -221,6 +262,9 @@ public class SearchPane extends JPanel {
         Boolean val = (Boolean) evt.getNewValue();
         setCaseSensitive( val.booleanValue() );
         
+      }else if (JinnRegistryKeys.SEARCH_REPLACEMENT.equals( prop )) {
+        setReplacement( (String) evt.getNewValue() );
+          
       }
     }
 

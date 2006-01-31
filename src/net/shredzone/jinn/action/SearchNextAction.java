@@ -59,11 +59,10 @@ import net.shredzone.jinn.pool.ImgPool;
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
  * @version $Id:$
  */
-public class SearchNextAction extends BaseAction {
+public class SearchNextAction extends BaseSearchAction {
   public static boolean NEXT = false;
   public static boolean PREVIOUS = true;
   
-  private final Registry registry;
   private final boolean direction;
   
   /**
@@ -71,6 +70,7 @@ public class SearchNextAction extends BaseAction {
    */
   public SearchNextAction( Registry registry, boolean prev ) {
     super (
+      registry,
       L.tr( prev ? "action.search.prev" : "action.search.next" ),
       ImgPool.get( "search.png" ),
       L.tr( prev ? "action.search.prev.tt" : "action.search.next.tt" ),
@@ -79,7 +79,6 @@ public class SearchNextAction extends BaseAction {
         KeyStroke.getKeyStroke( KeyEvent.VK_J, ActionEvent.CTRL_MASK )
       )
     );
-    this.registry = registry;
     this.direction = prev;
   }
   
