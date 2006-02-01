@@ -56,6 +56,7 @@ import javax.swing.JTextField;
 
 import net.shredzone.jinn.JinnRegistryKeys;
 import net.shredzone.jinn.Registry;
+import net.shredzone.jinn.i18n.L;
 import net.shredzone.jshred.swing.JLabelGroup;
 
 
@@ -160,13 +161,13 @@ public class SearchPane extends JPanel {
     JLabelGroup group = null;
     
     jtfTerm = new JTextField();
-    add( group = new JLabelGroup( jtfTerm, "Search for:", group ) );
+    add( group = new JLabelGroup( jtfTerm, L.tr("search.for"), group ) );
     
-    jcbCaseSensitive = new JCheckBox( "Case Sensitive" );
+    jcbCaseSensitive = new JCheckBox( L.tr("search.case") );
     add( group = new JLabelGroup( jcbCaseSensitive, "", group ) );
     
     jtfReplace = new JTextField();
-    add( group = new JLabelGroup( jtfReplace, "Replace with:", group ) );
+    add( group = new JLabelGroup( jtfReplace, L.tr("search.replace"), group ) );
 
     group.rearrange();
   }
@@ -201,7 +202,12 @@ public class SearchPane extends JPanel {
    * @return  SEARCH_OPTION, REPLACE_OPTION, REPLACEALL_OPTION, or CLOSED_OPTION
    */
   public static int showSearchDialog( Registry registry, Component parent, String title ) {
-    Object[] options = { "Search", "Replace", "Replace All", "Cancel" };
+    Object[] options = {
+        L.tr("search.do.search"),
+        L.tr("search.do.replace"),
+        L.tr("search.do.replaceall"),
+        L.tr("search.do.cancel"),
+    };
     
     SearchPane pane = new SearchPane( registry );
     

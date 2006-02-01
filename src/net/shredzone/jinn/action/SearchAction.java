@@ -82,7 +82,11 @@ public class SearchAction extends BaseSearchAction {
    * @param  e      ActionEvent, may be null if directly invoked
    */
   public void perform( ActionEvent e ) {
-    int rc = SearchPane.showSearchDialog( registry, getFrame( e ), "Search for?" );
+    int rc = SearchPane.showSearchDialog(
+        registry,
+        getFrame( e ),
+        L.tr("search.title")
+    );
     
     if( rc==SearchPane.SEARCH_OPTION ) {
       boolean found = searchNext();
