@@ -67,7 +67,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * inner subclasses for the standard actions: cut, copy, paste, undo, redo.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: TextComponentAction.java,v 1.2 2005/11/08 23:07:21 shred Exp $
+ * @version $Id: TextComponentAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public abstract class TextComponentAction extends BaseAction implements DocumentListener, UndoableEditListener, CaretListener {
   protected final JTextComponent comp;

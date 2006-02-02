@@ -62,7 +62,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Clean the translation text.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id:$
+ * @version $Id: CleanAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class CleanAction extends BaseAction {
   private static final long serialVersionUID = -5001726514056771893L;

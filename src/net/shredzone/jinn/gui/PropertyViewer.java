@@ -60,7 +60,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * turned on by default.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyViewer.java,v 1.5 2005/10/30 21:48:50 shred Exp $
+ * @version $Id: PropertyViewer.java 68 2006-02-02 12:51:43Z shred $
  */
 public class PropertyViewer extends JList {
   private static final long serialVersionUID = -3305575282409649481L;

@@ -60,7 +60,7 @@ import net.shredzone.jshred.swing.SwingUtils;
  * This is the MenuBar of Jinn.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnMenuBar.java,v 1.5 2005/11/14 12:14:35 shred Exp $
+ * @version $Id: JinnMenuBar.java 68 2006-02-02 12:51:43Z shred $
  */
 public class JinnMenuBar extends JMenuBar {
   private static final long serialVersionUID = 302069297128892725L;

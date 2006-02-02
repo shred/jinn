@@ -50,7 +50,7 @@ import java.io.IOException;
  * This class represents a single comment line of a properties file.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: CommentLine.java,v 1.4 2005/11/14 09:46:25 shred Exp $
+ * @version $Id: CommentLine.java 68 2006-02-02 12:51:43Z shred $
  */
 public class CommentLine extends AbstractLine {
   private String comment;

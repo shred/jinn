@@ -68,7 +68,7 @@ import net.shredzone.jshred.swing.SwingUtils;
  * exits.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: BaseAction.java,v 1.4 2005/12/21 14:05:43 shred Exp $
+ * @version $Id: BaseAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public abstract class BaseAction extends AbstractAction {
   

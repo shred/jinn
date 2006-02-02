@@ -61,7 +61,7 @@ import java.util.Map;
  * This class is threadsafe.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Registry.java,v 1.2 2005/11/08 23:07:21 shred Exp $
+ * @version $Id: Registry.java 68 2006-02-02 12:51:43Z shred $
  */
 public class Registry {
   private final Map mData = new HashMap();

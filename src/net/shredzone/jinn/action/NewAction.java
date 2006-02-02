@@ -59,7 +59,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Start a new set of properties.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: NewAction.java,v 1.1 2005/11/01 23:19:32 shred Exp $
+ * @version $Id: NewAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class NewAction extends BaseAction {
   private static final long serialVersionUID = -5321317574685533552L;

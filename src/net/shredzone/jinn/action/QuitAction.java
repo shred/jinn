@@ -57,7 +57,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Quit the application.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: QuitAction.java,v 1.4 2005/11/06 13:23:14 shred Exp $
+ * @version $Id: QuitAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class QuitAction extends BaseAction {
   private static final long serialVersionUID = -2916484363510929249L;

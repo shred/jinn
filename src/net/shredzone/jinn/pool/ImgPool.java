@@ -60,7 +60,7 @@ import javax.swing.ImageIcon;
  * until the last reference has been discarded.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: ImgPool.java,v 1.1 2005/10/21 10:31:39 shred Exp $
+ * @version $Id: ImgPool.java 68 2006-02-02 12:51:43Z shred $
  */
 public final class ImgPool {
 

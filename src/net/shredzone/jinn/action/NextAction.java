@@ -64,7 +64,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Jump to the next untranslated string.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: NextAction.java,v 1.4 2005/11/14 12:14:35 shred Exp $
+ * @version $Id: NextAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class NextAction extends BaseAction {
   private static final long serialVersionUID = 7168091727814398003L;

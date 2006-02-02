@@ -50,7 +50,7 @@ import java.io.IOException;
  * This class represents a single empty line of a properties file.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: EmptyLine.java,v 1.4 2005/11/14 09:46:25 shred Exp $
+ * @version $Id: EmptyLine.java 68 2006-02-02 12:51:43Z shred $
  */
 public class EmptyLine extends AbstractLine {
 

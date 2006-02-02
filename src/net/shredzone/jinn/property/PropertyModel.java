@@ -81,7 +81,7 @@ import javax.swing.event.ListDataListener;
  * All methods are <em>not</em> synchronized!
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyModel.java,v 1.7 2005/12/21 14:05:43 shred Exp $
+ * @version $Id: PropertyModel.java 68 2006-02-02 12:51:43Z shred $
  */
 public class PropertyModel implements ListModel {
   private final PropertyChangeListener listener = new MyPropertyChangeListener();

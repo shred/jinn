@@ -61,7 +61,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Show an about window.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: AboutAction.java,v 1.4 2005/11/14 12:14:35 shred Exp $
+ * @version $Id: AboutAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class AboutAction extends BaseAction {
   private static final long serialVersionUID = 48992099038287792L;

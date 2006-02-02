@@ -55,7 +55,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * or a PropertyKeyRefModel.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: KeyList.java,v 1.2 2005/11/06 13:23:14 shred Exp $
+ * @version $Id: KeyList.java 68 2006-02-02 12:51:43Z shred $
  */
 public class KeyList extends JList {
   private static final long serialVersionUID = -5451689667472060128L;

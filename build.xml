@@ -4,7 +4,7 @@
 <!-- Copyright (c) 2005 Richard "Shred" Körber -->
 <!-- All Rights Reserved. -->
 <!-- Released under MPL 1.1/GPL 2.0/LGPL 2.1 -->
-<!-- $Id: build.xml,v 1.2 2005/12/29 23:23:24 shred Exp $ -->
+<!-- $Id: build.xml 68 2006-02-02 12:51:43Z shred $ -->
 
 <project name="jinn" default="build" basedir=".">
   <description>

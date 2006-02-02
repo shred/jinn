@@ -58,7 +58,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Show the search window.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id:$
+ * @version $Id: SearchAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class SearchAction extends BaseSearchAction {
   private static final long serialVersionUID = 3478879399066426698L;

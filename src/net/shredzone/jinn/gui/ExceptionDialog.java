@@ -57,7 +57,7 @@ import java.text.*;
  * Informs the user about an Exception that has occured.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: ExceptionDialog.java,v 1.1 2005/11/01 23:19:32 shred Exp $
+ * @version $Id: ExceptionDialog.java 68 2006-02-02 12:51:43Z shred $
  */
 public class ExceptionDialog {
   private static boolean debugMode = false;

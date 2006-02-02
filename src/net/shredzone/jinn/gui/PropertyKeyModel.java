@@ -64,7 +64,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * A PropertyKeyModel is a view for the keys of a PropertyModel.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyKeyModel.java,v 1.2 2005/11/14 09:46:25 shred Exp $
+ * @version $Id: PropertyKeyModel.java 68 2006-02-02 12:51:43Z shred $
  */
 public class PropertyKeyModel implements ListModel {
   protected final PropertyModel model;

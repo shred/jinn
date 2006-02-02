@@ -53,7 +53,7 @@ import java.util.ResourceBundle;
  * <code>String text = L.tr("key");</code>.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: L.java,v 1.2 2005/10/27 22:41:24 shred Exp $
+ * @version $Id: L.java 68 2006-02-02 12:51:43Z shred $
  */
 public class L {
   private static final ResourceBundle resource;

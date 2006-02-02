@@ -74,7 +74,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * implemented.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: LineRenderer.java,v 1.8 2005/11/14 09:46:25 shred Exp $
+ * @version $Id: LineRenderer.java 68 2006-02-02 12:51:43Z shred $
  */
 public class LineRenderer extends JComponent implements ListCellRenderer {
   private static final long serialVersionUID = 4235299926570675081L;

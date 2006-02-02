@@ -59,7 +59,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * A KeyRenderer renders a Key line shown in a JList.
  * 
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: KeyRenderer.java,v 1.3 2005/11/14 09:46:25 shred Exp $
+ * @version $Id: KeyRenderer.java 68 2006-02-02 12:51:43Z shred $
  */
 public class KeyRenderer extends DefaultListCellRenderer {
   private static final long serialVersionUID = -1559580545428262000L;

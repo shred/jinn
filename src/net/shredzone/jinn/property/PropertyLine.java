@@ -52,7 +52,7 @@ import java.io.IOException;
  * It consists of a String type key and a String type translation.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyLine.java,v 1.5 2005/11/14 09:46:25 shred Exp $
+ * @version $Id: PropertyLine.java 68 2006-02-02 12:51:43Z shred $
  */
 public class PropertyLine extends AbstractLine {
   private String key;

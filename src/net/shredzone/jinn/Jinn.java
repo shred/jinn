@@ -89,7 +89,7 @@ import net.shredzone.jinn.i18n.L;
  * taken by another project. ;-) 
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Jinn.java,v 1.14 2005/12/21 14:05:43 shred Exp $
+ * @version $Id: Jinn.java 68 2006-02-02 12:51:43Z shred $
  */
 public class Jinn {
   private final static Preferences prefs = java.util.prefs.Preferences.userNodeForPackage( Jinn.class );

@@ -71,7 +71,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Save a properties file to another file.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SaveAsAction.java,v 1.3 2005/11/14 09:46:25 shred Exp $
+ * @version $Id: SaveAsAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class SaveAsAction extends AsyncBaseAction {
   private static final long serialVersionUID = -5321317574685533552L;

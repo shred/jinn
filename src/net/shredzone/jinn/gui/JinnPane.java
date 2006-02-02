@@ -83,7 +83,7 @@ import net.shredzone.jinn.property.PropertyModel;
 /**
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnPane.java,v 1.9 2005/11/14 12:14:35 shred Exp $
+ * @version $Id: JinnPane.java 68 2006-02-02 12:51:43Z shred $
  */
 public class JinnPane extends JPanel {
   private static final long serialVersionUID = 1614457053627926890L;

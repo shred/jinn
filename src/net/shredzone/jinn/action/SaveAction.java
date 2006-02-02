@@ -69,7 +69,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Save a properties file
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SaveAction.java,v 1.3 2005/11/14 12:14:35 shred Exp $
+ * @version $Id: SaveAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class SaveAction extends AsyncBaseAction {
   private static final long serialVersionUID = -1701159023065148732L;

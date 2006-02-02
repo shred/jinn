@@ -62,7 +62,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Go to a key.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id:$
+ * @version $Id: GotoAction.java 68 2006-02-02 12:51:43Z shred $
  */
 public class GotoAction extends BaseAction {
   private static final long serialVersionUID = -6185052702783447904L;

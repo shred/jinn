@@ -54,7 +54,7 @@ import java.io.Writer;
  * wrapped properly.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesWriter.java,v 1.6 2005/11/14 12:14:35 shred Exp $
+ * @version $Id: PropertiesWriter.java 68 2006-02-02 12:51:43Z shred $
  */
 public class PropertiesWriter extends Writer {
   private final static char[] hex = new char[] {

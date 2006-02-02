@@ -57,7 +57,7 @@ import java.io.Reader;
  * single line.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesReader.java,v 1.3 2005/10/26 23:08:00 shred Exp $
+ * @version $Id: PropertiesReader.java 68 2006-02-02 12:51:43Z shred $
  */
 public class PropertiesReader extends Reader {
   private final InputStream in;

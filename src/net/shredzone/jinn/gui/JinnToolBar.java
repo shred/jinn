@@ -59,7 +59,7 @@ import net.shredzone.jshred.swing.JToolbarButton;
  * This is Jinn's ToolBar.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnToolBar.java,v 1.7 2005/11/14 12:14:35 shred Exp $
+ * @version $Id: JinnToolBar.java 68 2006-02-02 12:51:43Z shred $
  */
 public class JinnToolBar extends JToolBar {
   private static final long serialVersionUID = -5415692905814260570L;
