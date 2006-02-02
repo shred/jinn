@@ -44,6 +44,7 @@
  
 package net.shredzone.jinn.gui;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.DefaultListCellRenderer;
@@ -59,7 +60,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * A KeyRenderer renders a Key line shown in a JList.
  * 
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: KeyRenderer.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: KeyRenderer.java 72 2006-02-02 22:51:00Z shred $
  */
 public class KeyRenderer extends DefaultListCellRenderer {
   private static final long serialVersionUID = -1559580545428262000L;
@@ -92,13 +93,23 @@ public class KeyRenderer extends DefaultListCellRenderer {
     if (model != null && model instanceof PropertyKeyRefModel) {
       final PropertyKeyRefModel ref = (PropertyKeyRefModel) model;
       final String key = value.toString();
-      
+
       if (ref.isChanged( key )) {
-        setIcon( iconTranslated );
-      }else if (ref.isNew( key )) {
-        setIcon( iconNew );
-      }else if (ref.isSurplus( key )) {
-        setIcon( iconNew );
+        comp.setIcon( iconTranslated );
+        final Color bg = getBackground();
+        setBackground( new Color(
+            ( bg.getRed() * 95 ) / 100,
+            bg.getGreen(),
+            ( bg.getBlue() * 95 ) /100
+        ));
+      }else if (ref.isNew( key ) || ref.isSurplus( key ) ) {
+        comp.setIcon( iconNew );
+        final Color bg = getBackground();
+        setBackground( new Color(
+            bg.getRed(),
+            ( bg.getGreen() * 95 ) / 100,
+            ( bg.getBlue() * 95 ) /100
+        ));
       }
     }
     
