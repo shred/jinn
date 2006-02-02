@@ -74,11 +74,12 @@ import net.shredzone.jinn.property.PropertyModel;
  * implemented.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: LineRenderer.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: LineRenderer.java 69 2006-02-02 13:12:00Z shred $
  */
 public class LineRenderer extends JComponent implements ListCellRenderer {
   private static final long serialVersionUID = 4235299926570675081L;
   
+  /*TODO: move those to the Style interface */
   private static final int PADDING = 5;   // space between two columns
   private static final Color BG_COMMENT  = new Color(0xFF,0xF0,0xF0);
   private static final Color BG_PROPERTY = new Color(0xF8,0xF8,0xF8);

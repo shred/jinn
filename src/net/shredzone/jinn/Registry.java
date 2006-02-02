@@ -55,13 +55,13 @@ import java.util.Map;
  * This is the glue that keeps the other classes together. There must be
  * only one for each running Jinn application.
  * <p>
- * Basically it is just a Map with possibility to listen to changes
+ * Basically it is just a Map with a possibility to listen to changes
  * of certain keys.
  * <p>
  * This class is threadsafe.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Registry.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: Registry.java 69 2006-02-02 13:12:00Z shred $
  */
 public class Registry {
   private final Map mData = new HashMap();

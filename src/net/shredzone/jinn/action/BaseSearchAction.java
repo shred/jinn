@@ -54,6 +54,7 @@ import javax.swing.text.JTextComponent;
 import net.shredzone.jinn.JinnRegistryKeys;
 import net.shredzone.jinn.Registry;
 import net.shredzone.jinn.gui.PropertyKeyModel;
+import net.shredzone.jinn.i18n.L;
 import net.shredzone.jinn.property.PropertyLine;
 import net.shredzone.jinn.property.PropertyModel;
 
@@ -61,14 +62,13 @@ import net.shredzone.jinn.property.PropertyModel;
  * The common superclass for all search operation actions.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: BaseSearchAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: BaseSearchAction.java 69 2006-02-02 13:12:00Z shred $
  */
 public abstract class BaseSearchAction extends BaseAction {
   protected final Registry registry;
   
   /**
-   * Create a new, synchronous Action. Event processing will be stopped
-   * during execution, which also means that there is no GUI update.
+   * Create a new BaseSearchAction.
    *
    * @param   registry    Registry to be used
    * @param   name        Action Name
@@ -81,20 +81,35 @@ public abstract class BaseSearchAction extends BaseAction {
     this.registry = registry;
   }
   
+  /**
+   * Get the search term to look for.
+   * 
+   * @return    Search term
+   */
   protected String getSearchTerm() {
     return (String) registry.get( JinnRegistryKeys.SEARCH_TERM );
   }
-  
+
+  /**
+   * Check if the search shall be case sensitive.
+   * 
+   * @return    true: case sensitive, false: ignore case
+   */
   protected boolean isCaseSensitive() {
     Boolean cs = (Boolean) registry.get( JinnRegistryKeys.SEARCH_CASE_SENSITIVE );
     return cs.booleanValue();
   }
-  
+
+  /**
+   * Show a message that there is no search result.
+   * 
+   * @param frm     Parent frame that is to be blocked.
+   */
   protected void showNotFoundMessage( Frame frm ) {
     JOptionPane.showMessageDialog(
         frm,
-        "No more matches",  //TODO: Translate
-        "Nothing found",
+        L.tr("search.nothing"),
+        L.tr("search.nothing.title"),
         JOptionPane.INFORMATION_MESSAGE
     );
   }
@@ -126,6 +141,14 @@ public abstract class BaseSearchAction extends BaseAction {
     return false;
   }
   
+  /**
+   * Search for the next resource that contains the search term. The
+   * search is started from the currently selected resource, which will
+   * be completely ignored. If no resource is selected, it will start
+   * at the first resource.
+   * 
+   * @return    true: found a resource, false: found nothing.
+   */
   private boolean searchResource() {
     final PropertyKeyModel keyModel = (PropertyKeyModel) registry.get( JinnRegistryKeys.MODEL_REFERENCE_KEY );
     final PropertyModel transModel = (PropertyModel) registry.get( JinnRegistryKeys.MODEL_TRANSLATION );
@@ -161,6 +184,12 @@ public abstract class BaseSearchAction extends BaseAction {
     return false;       // End reached, nothing was found
   }
   
+  /**
+   * Search for the next search term match in the current document. The
+   * search is started from the caret position.
+   * 
+   * @return    true: found a match, false: found nothing.
+   */
   private boolean searchDocument() {
     JTextComponent editor = (JTextComponent) registry.get( JinnRegistryKeys.TRANSLATION_TEXT );
     if( editor==null ) return false;

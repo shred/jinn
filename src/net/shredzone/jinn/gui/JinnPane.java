@@ -81,9 +81,11 @@ import net.shredzone.jinn.property.PropertyModel;
 
 
 /**
+ * The main pane of Jinn. It contains a menu bar, a tool bar and all kind
+ * of lists, text area and other components.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnPane.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: JinnPane.java 69 2006-02-02 13:12:00Z shred $
  */
 public class JinnPane extends JPanel {
   private static final long serialVersionUID = 1614457053627926890L;
@@ -311,6 +313,14 @@ public class JinnPane extends JPanel {
     add( jSplit, BorderLayout.CENTER );
   }
   
+  /**
+   * Add all the actions of this pane.
+   * 
+   * @param registry    Registry to be used
+   * @param comp        JTextComponent for inputting the translation
+   * @param ref         JTextComponent for the reference text (read only)
+   * @param undo        An UndoManager
+   */
   protected void addActions( Registry registry, JTextComponent comp, JTextComponent ref, UndoManager undo ) {
     registry.put( JinnRegistryKeys.ACTION_CUT, new TextComponentAction.CutTextAction( comp ) );
     registry.put( JinnRegistryKeys.ACTION_COPY, new TextComponentAction.CopyTextAction( comp ) );
@@ -365,6 +375,9 @@ public class JinnPane extends JPanel {
   
 /* ------------------------------------------------------------------------ */
 
+  /**
+   * This listener waits for a new properties key that has been selected.
+   */
   private class MyListSelectionListener implements ListSelectionListener {
 
     public void valueChanged( ListSelectionEvent e ) {
@@ -390,6 +403,9 @@ public class JinnPane extends JPanel {
   
 /* ------------------------------------------------------------------------ */
   
+  /**
+   * This listener waits for the translation document to change.
+   */
   private class MyDocumentListener implements DocumentListener {
 
     public void documentChanged( DocumentEvent e ) {

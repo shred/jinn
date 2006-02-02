@@ -59,11 +59,11 @@ import javax.swing.KeyStroke;
  * do not open a modal dialog.
  * <p>
  * The <code>perform()</code> method is always executed in an own thread,
- * not in the AWT dispatch thread. If you manipulate Swing objects, you
- * are encouraged to use <code>EventQueue.invokeLater()</code>.
+ * not in the AWT dispatch thread. If you manipulate Swing objects, remember
+ * to use <code>EventQueue.invokeLater()</code>.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: AsyncBaseAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: AsyncBaseAction.java 69 2006-02-02 13:12:00Z shred $
  */
 public abstract class AsyncBaseAction extends BaseAction {
 

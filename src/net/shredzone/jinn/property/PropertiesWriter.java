@@ -54,10 +54,10 @@ import java.io.Writer;
  * wrapped properly.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesWriter.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: PropertiesWriter.java 69 2006-02-02 13:12:00Z shred $
  */
 public class PropertiesWriter extends Writer {
-  private final static char[] hex = new char[] {
+  private final static char[] HEX = new char[] {
     '0', '1', '2', '3', '4', '5', '6', '7',
     '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
   };
@@ -432,10 +432,10 @@ public class PropertiesWriter extends Writer {
           case '\f': buff.append( "\\f" ); break;
           default:
             buff.append( "\\u" );
-            buff.append( hex[ ch>>12 & 0xF ] );
-            buff.append( hex[ ch>> 8 & 0xF ] );
-            buff.append( hex[ ch>> 4 & 0xF ] );
-            buff.append( hex[ ch     & 0xF ] );
+            buff.append( HEX[ ch>>12 & 0xF ] );
+            buff.append( HEX[ ch>> 8 & 0xF ] );
+            buff.append( HEX[ ch>> 4 & 0xF ] );
+            buff.append( HEX[ ch     & 0xF ] );
             break;
         }
       }

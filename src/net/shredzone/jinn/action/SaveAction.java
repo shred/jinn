@@ -69,14 +69,14 @@ import net.shredzone.jinn.property.PropertyModel;
  * Save a properties file
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SaveAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: SaveAction.java 69 2006-02-02 13:12:00Z shred $
  */
 public class SaveAction extends AsyncBaseAction {
   private static final long serialVersionUID = -1701159023065148732L;
   protected final Registry registry;
   
   /**
-   * Create a new OpenAction.
+   * Create a new SaveAction.
    *
    * @param   registry    The application's Registry
    */
