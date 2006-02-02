@@ -201,6 +201,25 @@ public class PropertiesReader extends Reader {
   public int read() throws IOException {
     synchronized( lock ) {
       return readUnwrapped();
+      
+/* This is a little hack for reading a properties file that is not
+ * ISO-8859-1 encoded. By specification, a properties file MUST be
+ * ISO-8859-1 encoded, and foreign characters have to be unicode escaped.
+ * Anyhow, sometimes you might get a properties file with a non-conformous
+ * encoding. With this little hack you are able to read it into Jinn and
+ * then save it in a conformous fashion. Maybe I will later add an action
+ * for it...
+ * 
+ *    String charset = "ISO-8859-2";
+ *    int ch = readUnwrapped();
+ *    if( ch<0 ) return ch;
+ *    
+ *    byte[] buf = new byte[] {(byte) ch};
+ *    String str = new String( buf, charset );
+ *    ch = str.charAt( 0 );
+ *    
+ *    return ch; 
+ */
     }
   }
 
