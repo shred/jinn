@@ -57,7 +57,7 @@ import java.io.Reader;
  * single line.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesReader.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: PropertiesReader.java 71 2006-02-02 22:50:33Z shred $
  */
 public class PropertiesReader extends Reader {
   private final InputStream in;
@@ -390,11 +390,11 @@ public class PropertiesReader extends Reader {
       switch (ch) {
         case 'u':
           try {
-            ch = (char) Integer.parseInt( buff.substring( pos+2, pos+5 ), 16 );
+            ch = (char) Integer.parseInt( buff.substring( pos+2, pos+6 ), 16 );
           }catch (NumberFormatException ex) {
             throw new IllegalArgumentException( "Malformed unicode escape sequence" );
           }
-          endpos = pos+4;
+          endpos = pos+5;
           break;
 
         case 't': ch = '\t'; break;

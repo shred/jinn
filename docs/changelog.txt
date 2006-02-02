@@ -1,6 +1,12 @@
 # CHANGELOG -- JINN
 # (C) Richard "Shred" Körber
-# $Id: changelog.txt 68 2006-02-02 12:51:43Z shred $
+# $Id: changelog.txt 71 2006-02-02 22:50:33Z shred $
+
+
+2006-02-02 shred
+  * BUGFIX: Major bug, escaped character sequences in properties files
+    were corrupted while reading.
+  * KeyRenderer now shows red and green bars additionally to the icons.
 
 2005-11-14 shred
   * First alpha release. Jinn is functional, but not yet tested.
