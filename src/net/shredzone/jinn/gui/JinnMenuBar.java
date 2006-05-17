@@ -44,11 +44,19 @@
  
 package net.shredzone.jinn.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.prefs.Preferences;
+
 import javax.swing.Action;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButtonMenuItem;
 
+import net.shredzone.jinn.Jinn;
 import net.shredzone.jinn.JinnRegistryKeys;
 import net.shredzone.jinn.Registry;
 import net.shredzone.jinn.i18n.L;
@@ -60,11 +68,14 @@ import net.shredzone.jshred.swing.SwingUtils;
  * This is the MenuBar of Jinn.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnMenuBar.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: JinnMenuBar.java 84 2006-05-17 12:46:49Z shred $
  */
 public class JinnMenuBar extends JMenuBar {
   private static final long serialVersionUID = 302069297128892725L;
   private final Registry registry;
+  private JRadioButtonMenuItem jrbmiAuto;
+  private JRadioButtonMenuItem jrbmiDe;
+  private JRadioButtonMenuItem jrbmiEn;
   
   public JinnMenuBar( Registry registry ) {
     this.registry = registry;
@@ -106,6 +117,44 @@ public class JinnMenuBar extends JMenuBar {
       jmSearch.add( getItem( JinnRegistryKeys.ACTION_GOTO ) );
     }
     add( jmSearch );
+    
+    final JMenu jmOptions = SwingUtils.createJMenu( L.tr("menu.options") );
+    {
+      final LanguageActionListener lal = new LanguageActionListener();
+      final Preferences prefs  = Preferences.userNodeForPackage( Jinn.class );
+      String lname = prefs.get( "lang", "" );
+      
+      JMenu jmLang = new JMenu( L.tr( "menu.options.lang" ) );
+      
+      jrbmiAuto = new JRadioButtonMenuItem(
+          L.tr( "menu.options.lang.auto" ),
+          lname.length()==0
+      );
+      jrbmiDe = new JRadioButtonMenuItem(
+          "Deutsch",
+          lname.equals("de")
+      );
+      jrbmiEn = new JRadioButtonMenuItem(
+          "English",
+          lname.equals("en")
+      );
+      
+      jrbmiAuto.addActionListener( lal );
+      jrbmiDe.addActionListener( lal );
+      jrbmiEn.addActionListener( lal );
+      
+      ButtonGroup languageGroup = new ButtonGroup();
+      languageGroup.add( jrbmiAuto );
+      languageGroup.add( jrbmiDe );
+      languageGroup.add( jrbmiEn );
+      
+      jmLang.add( jrbmiAuto );
+      jmLang.add( jrbmiDe );
+      jmLang.add( jrbmiEn );
+      
+      jmOptions.add(jmLang);
+    }
+    add( jmOptions );
 
     add( Box.createGlue() );
     
@@ -126,5 +175,23 @@ public class JinnMenuBar extends JMenuBar {
     return new MenuActionProxy( (Action) registry.get( key ) );
   }
   
+  
+  private class LanguageActionListener implements ActionListener {
+
+    public void actionPerformed( ActionEvent e ) {
+      Preferences prefs  = Preferences.userNodeForPackage( Jinn.class );
+
+      if ( jrbmiDe.isSelected() ) {
+        prefs.put( "lang", "de" );
+      }else if ( jrbmiEn.isSelected() ) {
+        prefs.put( "lang", "en" );
+      }else {
+        prefs.remove( "lang" );
+      }
+
+      JOptionPane.showMessageDialog( JinnMenuBar.this, L.tr("options.restart") );
+    }
+    
+  }
   
 }

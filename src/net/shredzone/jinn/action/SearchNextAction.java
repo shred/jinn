@@ -57,7 +57,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Find the next or previous occurance of a search string.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SearchNextAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: SearchNextAction.java 84 2006-05-17 12:46:49Z shred $
  */
 public class SearchNextAction extends BaseSearchAction {
   public static boolean NEXT = false;
@@ -80,6 +80,8 @@ public class SearchNextAction extends BaseSearchAction {
       )
     );
     this.direction = prev;
+    
+    setEnabled(false); /*DEBUG: Search is deactivated for now */
   }
   
   /**

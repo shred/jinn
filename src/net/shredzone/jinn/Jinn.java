@@ -48,6 +48,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Locale;
 import java.util.prefs.Preferences;
 
 import javax.swing.JFrame;
@@ -89,7 +90,7 @@ import net.shredzone.jinn.i18n.L;
  * taken by another project. ;-) 
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Jinn.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: Jinn.java 84 2006-05-17 12:46:49Z shred $
  */
 public class Jinn {
   private final static Preferences prefs = java.util.prefs.Preferences.userNodeForPackage( Jinn.class );
@@ -183,7 +184,13 @@ public class Jinn {
    * @param args
    */
   public static void main( String[] args ) {
-    
+    //--- Sprache setzen ---
+    Preferences prefs  = Preferences.userNodeForPackage( Jinn.class );
+    String lname = prefs.get( "lang", "" );
+    if( lname.length()!=0 ) {
+      Locale.setDefault( new Locale( lname ) );
+    }
+
     //--- Do some MacX patches ---
     final boolean isMacOS = ( System.getProperty("mrj.version") != null );
     if( isMacOS ) {
@@ -192,7 +199,6 @@ public class Jinn {
     }
 
     new Jinn();
-
   }
 
 

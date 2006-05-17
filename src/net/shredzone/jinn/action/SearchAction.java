@@ -58,7 +58,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Show the search window.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SearchAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: SearchAction.java 84 2006-05-17 12:46:49Z shred $
  */
 public class SearchAction extends BaseSearchAction {
   private static final long serialVersionUID = 3478879399066426698L;
@@ -74,6 +74,8 @@ public class SearchAction extends BaseSearchAction {
       L.tr( "action.search.tt" ),
       KeyStroke.getKeyStroke( KeyEvent.VK_H, ActionEvent.CTRL_MASK )
     );
+    
+    setEnabled(false); /*DEBUG: Search is deactivated for now */
   }
   
   /**

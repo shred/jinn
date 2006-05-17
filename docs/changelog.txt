@@ -1,7 +1,10 @@
 # CHANGELOG -- JINN
 # (C) Richard "Shred" Körber
-# $Id: changelog.txt 71 2006-02-02 22:50:33Z shred $
+# $Id: changelog.txt 84 2006-05-17 12:46:49Z shred $
 
+
+2006-05-17 shred
+  * Language changeable by menu.
 
 2006-02-02 shred
   * BUGFIX: Major bug, escaped character sequences in properties files
