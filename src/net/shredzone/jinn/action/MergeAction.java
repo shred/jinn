@@ -69,7 +69,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Merge a reference properties file
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: MergeAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: MergeAction.java 85 2006-05-18 07:00:11Z shred $
  */
 public class MergeAction extends AsyncBaseAction {
   private static final long serialVersionUID = -8530332702108753687L;
@@ -121,6 +121,7 @@ public class MergeAction extends AsyncBaseAction {
         registry.put( JinnRegistryKeys.FILE_LASTDIR, file.getParentFile() );
         registry.put( JinnRegistryKeys.FILE_REFERENCE, file );
         registry.put( JinnRegistryKeys.MODEL_REFERENCE, src );
+        registry.put( JinnRegistryKeys.FLAG_CHANGED, true );
 
       }catch( Exception ex ) {
         ExceptionDialog.show( getFrame(e), L.tr("a.merge.ex.reading"), ex );

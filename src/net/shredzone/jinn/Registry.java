@@ -61,7 +61,7 @@ import java.util.Map;
  * This class is threadsafe.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Registry.java 69 2006-02-02 13:12:00Z shred $
+ * @version $Id: Registry.java 85 2006-05-18 07:00:11Z shred $
  */
 public class Registry {
   private final Map mData = new HashMap();
@@ -90,6 +90,16 @@ public class Registry {
       mData.put( key, val );
       support.firePropertyChange( key, old, val );
     }
+  }
+
+  /**
+   * Set a boolean value.
+   * 
+   * @param key  Registry key to be set
+   * @param val  New boolean value
+   */
+  public void put( String key, boolean val ) {
+    put( key, new Boolean(val) );
   }
   
   /**
@@ -120,6 +130,20 @@ public class Registry {
   public String getString( String key ) {
     final Object val = get( key );
     return (val != null ? val.toString() : null);
+  }
+  
+  /**
+   * Checks a boolean state of a registry key. The key must contain
+   * a Boolean object, otherwise a ClassCastException is thrown. If the
+   * key is not set, false will be returned.
+   * 
+   * @param key  Registry key to read
+   * @return    State of that key.
+   * @throws ClassCastException   If the key is not a boolean attribute.
+   */
+  public boolean is( String key ) {
+    Boolean bool = (Boolean) get( key );
+    return( bool!=null && bool.booleanValue() );
   }
 
   /**

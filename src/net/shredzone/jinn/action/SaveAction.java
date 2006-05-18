@@ -44,6 +44,7 @@
  
 package net.shredzone.jinn.action;
 
+import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -55,7 +56,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import net.shredzone.jinn.JinnRegistryKeys;
@@ -69,7 +69,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Save a properties file
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SaveAction.java 69 2006-02-02 13:12:00Z shred $
+ * @version $Id: SaveAction.java 85 2006-05-18 07:00:11Z shred $
  */
 public class SaveAction extends AsyncBaseAction {
   private static final long serialVersionUID = -1701159023065148732L;
@@ -90,11 +90,21 @@ public class SaveAction extends AsyncBaseAction {
 
     this.registry = registry;
     
-    setEnabled( registry.get( JinnRegistryKeys.FILE_TRANSLATION ) != null );
+    setEnabled(
+         ( registry.get( JinnRegistryKeys.FILE_TRANSLATION ) != null )
+      && ( registry.is(  JinnRegistryKeys.FLAG_CHANGED ) )
+    );
     
-    registry.addPropertyChangeListener( JinnRegistryKeys.FILE_TRANSLATION, new PropertyChangeListener() {
+    registry.addPropertyChangeListener( new PropertyChangeListener() {
       public void propertyChange( PropertyChangeEvent evt ) {
-        setEnabled( evt.getNewValue() != null );
+        String name = evt.getPropertyName();
+        if( name.equals( JinnRegistryKeys.FILE_TRANSLATION )
+            || name.equals( JinnRegistryKeys.FLAG_CHANGED ) ) {
+          setEnabled(
+              ( SaveAction.this.registry.get( JinnRegistryKeys.FILE_TRANSLATION ) != null )
+           && ( SaveAction.this.registry.is(  JinnRegistryKeys.FLAG_CHANGED ) )
+         );
+        }
       }
     });
   }
@@ -105,6 +115,18 @@ public class SaveAction extends AsyncBaseAction {
    * @param  e      ActionEvent, may be null if directly invoked
    */
   public void perform( ActionEvent e ) {
+    doSave( getFrame(e) );
+  }
+  
+  /**
+   * Saves the current properties file.
+   * 
+   * @param  parent  Parent component to block
+   * @return  true: Save was successful, false: Save failed
+   */
+  public boolean doSave(Component parent) {
+    boolean success = true;
+    
     final File          target
         = (File) registry.get( JinnRegistryKeys.FILE_TRANSLATION );
 
@@ -120,26 +142,18 @@ public class SaveAction extends AsyncBaseAction {
         model.write( out );
         out.flush();
         
-        /*TODO: Add a change flag, only enable the save button if changes
-         * were made, disable after saving. This will give sufficient
-         * visual feedback.
-         */
-        
-        JOptionPane.showMessageDialog(
-            getFrame(e),
-            L.tr("a.save.success.msg"),
-            L.tr("a.save.success.title"),
-            JOptionPane.INFORMATION_MESSAGE
-        );
+        registry.put( JinnRegistryKeys.FLAG_CHANGED, false );
         
       }catch (IOException ex) {
-        ExceptionDialog.show( getFrame(e), L.tr("a.save.ex.writing"), ex );
+        ExceptionDialog.show( parent, L.tr("a.save.ex.writing"), ex );
+        success = false;
       }finally {
         if (out != null) {
           try {
             out.close();
           }catch (IOException ex2) {
-            ExceptionDialog.show( getFrame(e), L.tr("a.save.ex.reading"), ex2 );
+            ExceptionDialog.show( parent, L.tr("a.save.ex.reading"), ex2 );
+            success = false;
           }
         }
       }
@@ -148,6 +162,8 @@ public class SaveAction extends AsyncBaseAction {
       // We ain't got no file to save, so give a visual feedback...
       Toolkit.getDefaultToolkit().beep();
     }
+    
+    return success;
   }
-  
+
 }

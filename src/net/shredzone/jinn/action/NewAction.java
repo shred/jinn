@@ -47,6 +47,7 @@ package net.shredzone.jinn.action;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import net.shredzone.jinn.JinnRegistryKeys;
@@ -59,7 +60,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Start a new set of properties.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: NewAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: NewAction.java 85 2006-05-18 07:00:11Z shred $
  */
 public class NewAction extends BaseAction {
   private static final long serialVersionUID = -5321317574685533552L;
@@ -87,10 +88,31 @@ public class NewAction extends BaseAction {
    * @param  e      ActionEvent, may be null if directly invoked
    */
   public void perform( ActionEvent e ) {
+    if (registry.is(  JinnRegistryKeys.FLAG_CHANGED )) {
+      int result = JOptionPane.showConfirmDialog(
+          getFrame(e),
+          L.tr("save.confirm"),
+          L.tr("save.confirm.new"),
+          JOptionPane.YES_NO_CANCEL_OPTION
+      );
+      
+      if( result == JOptionPane.CANCEL_OPTION ) {
+        return;
+      }
+      
+      if( result == JOptionPane.YES_OPTION ) {
+        SaveAction save = (SaveAction) registry.get( JinnRegistryKeys.ACTION_SAVE );
+        if(! save.doSave( getFrame(e) ) ) {
+          return;     // Save failed: do not quit!
+        }
+      }
+    }
+
     registry.put( JinnRegistryKeys.FILE_TRANSLATION, null );
     registry.put( JinnRegistryKeys.MODEL_TRANSLATION, new PropertyModel() );
     registry.put( JinnRegistryKeys.FILE_REFERENCE, null );
     registry.put( JinnRegistryKeys.MODEL_REFERENCE, new PropertyModel() );
+    registry.put( JinnRegistryKeys.FLAG_CHANGED, false );
   }
   
 }

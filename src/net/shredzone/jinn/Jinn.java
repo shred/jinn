@@ -90,7 +90,7 @@ import net.shredzone.jinn.i18n.L;
  * taken by another project. ;-) 
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Jinn.java 84 2006-05-17 12:46:49Z shred $
+ * @version $Id: Jinn.java 85 2006-05-18 07:00:11Z shred $
  */
 public class Jinn {
   private final static Preferences prefs = java.util.prefs.Preferences.userNodeForPackage( Jinn.class );
@@ -166,7 +166,7 @@ public class Jinn {
    * Create all Actions and put them into the registry.
    */
   protected void createActions() {
-    registry.put( JinnRegistryKeys.ACTION_QUIT,   new QuitAction( frame ) );
+    registry.put( JinnRegistryKeys.ACTION_QUIT,   new QuitAction( registry ) );
     registry.put( JinnRegistryKeys.ACTION_NEW,    new NewAction( registry ) );
     registry.put( JinnRegistryKeys.ACTION_OPEN,   new OpenAction( registry ) );
     registry.put( JinnRegistryKeys.ACTION_MERGE,  new MergeAction( registry ) );

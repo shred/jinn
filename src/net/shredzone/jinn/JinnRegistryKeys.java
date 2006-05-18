@@ -49,7 +49,7 @@ package net.shredzone.jinn;
  * This interface documents the keys available in Jinn's Registry.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnRegistryKeys.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: JinnRegistryKeys.java 85 2006-05-18 07:00:11Z shred $
  */
 public interface JinnRegistryKeys {
   
@@ -155,5 +155,9 @@ public interface JinnRegistryKeys {
 
   /** Match case? */
   public static final String SEARCH_CASE_SENSITIVE = "search.casesensitive";
+
+  /*--- Flags ----------------------------------------------------------- */
+  
+  public static final String FLAG_CHANGED = "flag.changed";
   
 }

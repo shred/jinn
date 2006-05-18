@@ -71,7 +71,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Save a properties file to another file.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SaveAsAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: SaveAsAction.java 85 2006-05-18 07:00:11Z shred $
  */
 public class SaveAsAction extends AsyncBaseAction {
   private static final long serialVersionUID = -5321317574685533552L;
@@ -92,11 +92,21 @@ public class SaveAsAction extends AsyncBaseAction {
 
     this.registry = registry;
     
-    setEnabled( registry.get( JinnRegistryKeys.MODEL_TRANSLATION ) != null );
-    
-    registry.addPropertyChangeListener( JinnRegistryKeys.MODEL_TRANSLATION, new PropertyChangeListener() {
+    setEnabled(
+        ( registry.get( JinnRegistryKeys.FILE_TRANSLATION ) != null )
+      && ( registry.is(  JinnRegistryKeys.FLAG_CHANGED ) )
+    );
+   
+    registry.addPropertyChangeListener( new PropertyChangeListener() {
       public void propertyChange( PropertyChangeEvent evt ) {
-        setEnabled( evt.getNewValue() != null );
+        String name = evt.getPropertyName();
+        if( name.equals( JinnRegistryKeys.FILE_TRANSLATION )
+            || name.equals( JinnRegistryKeys.FLAG_CHANGED ) ) {
+          setEnabled(
+              ( SaveAsAction.this.registry.get( JinnRegistryKeys.FILE_TRANSLATION ) != null )
+           && ( SaveAsAction.this.registry.is(  JinnRegistryKeys.FLAG_CHANGED ) )
+         );
+        }
       }
     });
   }
@@ -142,6 +152,8 @@ public class SaveAsAction extends AsyncBaseAction {
           out = new BufferedOutputStream( new FileOutputStream( target ) );
           model.write( out );
           out.flush();
+          
+          registry.put( JinnRegistryKeys.FLAG_CHANGED, false );
         }catch (IOException ex) {
           ExceptionDialog.show( getFrame(e), L.tr("a.save.ex.writing"), ex );
         }finally {

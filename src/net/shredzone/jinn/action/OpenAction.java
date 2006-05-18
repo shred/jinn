@@ -67,7 +67,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Open a properties file
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: OpenAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: OpenAction.java 85 2006-05-18 07:00:11Z shred $
  */
 public class OpenAction extends AsyncBaseAction {
   private static final long serialVersionUID = -1701159023065148732L;
@@ -95,6 +95,8 @@ public class OpenAction extends AsyncBaseAction {
    * @param  e      ActionEvent, may be null if directly invoked
    */
   public void perform( ActionEvent e ) {
+    /*TODO: Ask for confirmance */
+    
     JFileChooser fc = new JFileChooser();
     fc.setCurrentDirectory( (File) registry.get( JinnRegistryKeys.FILE_LASTDIR ) );
     fc.setFileFilter( PropertiesFileFilter.DEFAULT );
@@ -111,6 +113,7 @@ public class OpenAction extends AsyncBaseAction {
         registry.put( JinnRegistryKeys.FILE_LASTDIR, file.getParentFile() );
         registry.put( JinnRegistryKeys.FILE_TRANSLATION, file );
         registry.put( JinnRegistryKeys.MODEL_TRANSLATION, src );
+        registry.put( JinnRegistryKeys.FLAG_CHANGED, false );
 
       }catch( Exception ex ) {
         ExceptionDialog.show( getFrame(e), L.tr("a.open.ex.reading"), ex );

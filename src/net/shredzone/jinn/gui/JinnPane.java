@@ -85,7 +85,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * of lists, text area and other components.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnPane.java 69 2006-02-02 13:12:00Z shred $
+ * @version $Id: JinnPane.java 85 2006-05-18 07:00:11Z shred $
  */
 public class JinnPane extends JPanel {
   private static final long serialVersionUID = 1614457053627926890L;
@@ -96,6 +96,7 @@ public class JinnPane extends JPanel {
   private JTextArea jtaReference;
   private JTextArea jtaTranslation;
   private UndoManager undoManager;
+  private final MyDocumentListener docListener;
 
   /**
    * Create a new main Jinn pane, using the given Registry.
@@ -105,6 +106,8 @@ public class JinnPane extends JPanel {
   public JinnPane( Registry registry ) {
     this.registry = registry;
 
+    docListener = new MyDocumentListener();
+    
     //--- Create JTextArea ---
     undoManager = new UndoManager();
     jtaTranslation = new JTextArea();
@@ -113,7 +116,7 @@ public class JinnPane extends JPanel {
     
     final Document doc = jtaTranslation.getDocument();
     doc.addUndoableEditListener( undoManager );
-    doc.addDocumentListener( new MyDocumentListener() );
+    doc.addDocumentListener( docListener );
     addActions( registry, jtaTranslation, jtaReference, undoManager );
     
     registry.put( JinnRegistryKeys.TRANSLATION_TEXT, jtaTranslation );
@@ -184,11 +187,16 @@ public class JinnPane extends JPanel {
       if (transModel != null) {
         final PropertyLine selTransLine = transModel.getPropertyLine( key );
         if( selTransLine != null ) {
+          final Document doc = jtaTranslation.getDocument();
+          doc.removeDocumentListener( docListener );
+
           final String val = selTransLine.getValue();
           jtaTranslation.setText( val );
 //          jtaTranslation.selectAll();
           undoManager.discardAllEdits();
           jtaTranslation.grabFocus();
+
+          doc.addDocumentListener( docListener );
         }
       }
 
@@ -417,6 +425,7 @@ public class JinnPane extends JPanel {
         if (line != null) {
           try {
             line.setValue( doc.getText( 0, doc.getLength() ) );
+            registry.put( JinnRegistryKeys.FLAG_CHANGED, true );
           } catch (BadLocationException e1) {
             // If we reach this block, it means that doc.getLength()
             // actually did not return the correct document size. This

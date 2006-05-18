@@ -47,28 +47,34 @@ package net.shredzone.jinn.action;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import net.shredzone.jinn.JinnRegistryKeys;
+import net.shredzone.jinn.Registry;
 import net.shredzone.jinn.i18n.L;
 import net.shredzone.jinn.pool.ImgPool;
+import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * Quit the application.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: QuitAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: QuitAction.java 85 2006-05-18 07:00:11Z shred $
  */
 public class QuitAction extends BaseAction {
   private static final long serialVersionUID = -2916484363510929249L;
   private Window window;
-  
+  protected final Registry registry;
+
   /**
    * Create a new QuitAction.
    *
-   * @param   window      Window to be closed by this action
+   * @param   registry    The application's Registry
    */
-  public QuitAction( Window window ) {
+  public QuitAction( Registry registry ) {
     super (
       L.tr( "action.quit" ),
       ImgPool.get( "quit.png" ),
@@ -76,7 +82,8 @@ public class QuitAction extends BaseAction {
       KeyStroke.getKeyStroke( KeyEvent.VK_Q, ActionEvent.CTRL_MASK )
     );
 
-    this.window = window;
+    this.registry = registry;
+    this.window = (Window) registry.get( JinnRegistryKeys.FRAME_MAIN );
   }
   
   /**
@@ -85,6 +92,29 @@ public class QuitAction extends BaseAction {
    * @param  e      ActionEvent, may be null if directly invoked
    */
   public void perform( ActionEvent e ) {
+    final File target = (File) registry.get( JinnRegistryKeys.FILE_TRANSLATION );
+    final PropertyModel model = (PropertyModel) registry.get( JinnRegistryKeys.MODEL_TRANSLATION );
+
+    if (target != null && model != null && registry.is(  JinnRegistryKeys.FLAG_CHANGED )) {
+      int result = JOptionPane.showConfirmDialog(
+          window,
+          L.tr("save.confirm"),
+          L.tr("save.confirm.quit"),
+          JOptionPane.YES_NO_CANCEL_OPTION
+      );
+      
+      if( result == JOptionPane.CANCEL_OPTION ) {
+        return;
+      }
+      
+      if( result == JOptionPane.YES_OPTION ) {
+        SaveAction save = (SaveAction) registry.get( JinnRegistryKeys.ACTION_SAVE );
+        if(! save.doSave( getFrame(e) ) ) {
+          return;     // Save failed: do not quit!
+        }
+      }
+    }
+    
     if (window != null) {
       window.setVisible( false );
       window.dispose();
