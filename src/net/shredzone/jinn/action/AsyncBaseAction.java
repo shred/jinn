@@ -63,7 +63,7 @@ import javax.swing.KeyStroke;
  * to use <code>EventQueue.invokeLater()</code>.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: AsyncBaseAction.java 69 2006-02-02 13:12:00Z shred $
+ * @version $Id: AsyncBaseAction.java 86 2006-07-13 14:02:46Z shred $
  */
 public abstract class AsyncBaseAction extends BaseAction {
 
@@ -112,6 +112,8 @@ public abstract class AsyncBaseAction extends BaseAction {
     });
     
     //--- Run it ---
+    // http://java.sun.com/developer/JDCTechTips/2005/tt0727.html#1
+    thread.setPriority( Thread.NORM_PRIORITY );
     thread.start();
   }
 

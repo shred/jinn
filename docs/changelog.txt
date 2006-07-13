@@ -1,6 +1,9 @@
 # CHANGELOG -- JINN
 # (C) Richard "Shred" Körber
-# $Id: changelog.txt 85 2006-05-18 07:00:11Z shred $
+# $Id: changelog.txt 86 2006-07-13 14:02:46Z shred $
+
+2006-07-13 shred
+  * Correctly started a worker thread from the AWT event thread.
 
 2006-05-18 shred
   * Change flag introduced. The save buttons are only activated if there
