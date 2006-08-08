@@ -57,7 +57,7 @@ import java.io.Reader;
  * single line.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesReader.java 71 2006-02-02 22:50:33Z shred $
+ * @version $Id: PropertiesReader.java 106 2006-08-08 08:06:51Z shred $
  */
 public class PropertiesReader extends Reader {
   private final InputStream in;
@@ -281,7 +281,7 @@ public class PropertiesReader extends Reader {
       }
       
       // Read until EOL
-      final StringBuffer buff = new StringBuffer();
+      final StringBuilder buff = new StringBuilder();
       while (ch != -1 && ch != '\n') {
         buff.append( (char) ch );
         ch = read();

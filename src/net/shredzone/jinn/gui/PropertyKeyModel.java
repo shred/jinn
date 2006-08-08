@@ -64,13 +64,14 @@ import net.shredzone.jinn.property.PropertyModel;
  * A PropertyKeyModel is a view for the keys of a PropertyModel.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyKeyModel.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: PropertyKeyModel.java 106 2006-08-08 08:06:51Z shred $
  */
 public class PropertyKeyModel implements ListModel {
   protected final PropertyModel model;
-  protected final List lKeys = new ArrayList();
-  private final Set sListener = new HashSet();
+  protected final List<String> lKeys = new ArrayList<String>();
   private final ListDataListener listener = new MyListDataListener();
+  private final Set<WeakReference<ListDataListener>> sListener
+      = new HashSet<WeakReference<ListDataListener>>();
   
   /**
    * Create a new PropertyKeyModel for a given PropertyModel.
@@ -93,13 +94,23 @@ public class PropertyKeyModel implements ListModel {
   }
   
   /**
-   * Get an element of this model. The returned object is always a
-   * String.
+   * Get an element of this model. This is only for the ListModel.
+   * Use {@link #getKeyAt(int)} instead.
    * 
    * @param  index      Index to read from
    * @return  String containing the Key at this index
    */
   public Object getElementAt( int index ) {
+    return getKeyAt( index );
+  }
+  
+  /**
+   * Get an element of this model.
+   * 
+   * @param  index      Index to read from
+   * @return  String containing the Key at this index
+   */
+  public String getKeyAt( int index ) {
     return lKeys.get( index );
   }
   
@@ -130,18 +141,14 @@ public class PropertyKeyModel implements ListModel {
    */
   public void addListDataListener( ListDataListener l ) {
     //--- Check if the Listener is already added ---
-    for (
-        Iterator it = sListener.iterator();
-        it.hasNext();
-        ) {
-      final WeakReference wr = (WeakReference) it.next();
+    for( WeakReference<ListDataListener> wr : sListener ) {
       if (wr.get() == l) {
         return;
       }
     }
     
     //--- Add the Listener ---
-    sListener.add( new WeakReference( l ) );
+    sListener.add( new WeakReference<ListDataListener>( l ) );
   }
 
   /**
@@ -151,10 +158,10 @@ public class PropertyKeyModel implements ListModel {
    */
   public void removeListDataListener( ListDataListener l ) {
     for (
-        Iterator it = sListener.iterator();
+        Iterator<WeakReference<ListDataListener>> it = sListener.iterator();
         it.hasNext();
         ) {
-      final WeakReference wr = (WeakReference) it.next();
+      WeakReference wr = it.next();
       if (wr.get() == l) {
         it.remove();
         break;
@@ -178,11 +185,7 @@ public class PropertyKeyModel implements ListModel {
     lKeys.clear();
     
     //--- Fetch all PropertyLines ---
-    for (
-        Iterator it = model.getLines().iterator();
-        it.hasNext();
-        ) {
-      final Line line = (Line) it.next();
+    for ( Line line : model.getLines() ) {
       if (line instanceof PropertyLine) {
         lKeys.add( ((PropertyLine) line).getKey() );
       }
@@ -196,11 +199,10 @@ public class PropertyKeyModel implements ListModel {
         lKeys.size()-1
     );
     for (
-        Iterator it = sListener.iterator();
+        Iterator<WeakReference<ListDataListener>> it = sListener.iterator();
         it.hasNext();
         ) {
-      final WeakReference wr = (WeakReference) it.next();
-      final ListDataListener l = (ListDataListener) wr.get();
+      ListDataListener l = it.next().get();
       if (l != null) {
         l.contentsChanged( evt );
       }else {
@@ -231,21 +233,21 @@ public class PropertyKeyModel implements ListModel {
       int lastIx  = e.getIndex1();
 
       while (firstIx < lastIx) {
-        final Line l = (Line) model.getElementAt( firstIx );
+        Line l = model.getLineAt( firstIx );
         if (l != null && l instanceof PropertyLine)
           break;
         firstIx++;
       }
       
       while (firstIx < lastIx) {
-        final Line l = (Line) model.getElementAt( lastIx );
+        Line l = model.getLineAt( lastIx );
         if (l != null && l instanceof PropertyLine)
           break;
         lastIx--;
       }
       
-      int start = lKeys.indexOf( model.getElementAt( firstIx ) );
-      int end   = lKeys.indexOf( model.getElementAt( lastIx ) );
+      int start = lKeys.indexOf( model.getLineAt( firstIx ) );
+      int end   = lKeys.indexOf( model.getLineAt( lastIx ) );
       if (start < 0) start = 0;
       if (end < 0)   end   = lKeys.size()-1;
       
@@ -257,11 +259,10 @@ public class PropertyKeyModel implements ListModel {
       );
       
       for (
-          Iterator it = sListener.iterator();
+          Iterator<WeakReference<ListDataListener>> it = sListener.iterator();
           it.hasNext();
           ) {
-        final WeakReference wr = (WeakReference) it.next();
-        final ListDataListener l = (ListDataListener) wr.get();
+        ListDataListener l = it.next().get();
         if (l != null) {
           l.contentsChanged( evt );
         }else {

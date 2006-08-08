@@ -60,11 +60,12 @@ import javax.swing.ImageIcon;
  * until the last reference has been discarded.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: ImgPool.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: ImgPool.java 106 2006-08-08 08:06:51Z shred $
  */
 public final class ImgPool {
 
-  private static HashMap cache = new HashMap();
+  private final static HashMap<String,SoftReference<ImageIcon>> cache
+      = new HashMap<String,SoftReference<ImageIcon>>();
 
   /**
    * Get an ImageIcon by its name.
@@ -76,12 +77,12 @@ public final class ImgPool {
     // First check if there is a cache entry, because the GC could have
     // sweeped it already.
 
-    SoftReference ref = (SoftReference)cache.get(name);
-    ImageIcon result = (ref!=null ? (ImageIcon)ref.get() : null);
+    SoftReference<ImageIcon> ref = cache.get(name);
+    ImageIcon result = (ref!=null ? ref.get() : null);
     if(result==null) {
       try {
         result = new ImageIcon( ImgPool.class.getResource(name) );
-        cache.put(name,new java.lang.ref.SoftReference(result));
+        cache.put( name, new SoftReference<ImageIcon>(result) );
       }catch( Exception ex ) {}
     }
     return result;

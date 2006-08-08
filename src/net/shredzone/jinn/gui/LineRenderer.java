@@ -51,7 +51,6 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.lang.ref.WeakReference;
-import java.util.Iterator;
 
 import javax.swing.JComponent;
 import javax.swing.JList;
@@ -74,7 +73,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * implemented.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: LineRenderer.java 69 2006-02-02 13:12:00Z shred $
+ * @version $Id: LineRenderer.java 106 2006-08-08 08:06:51Z shred $
  */
 public class LineRenderer extends JComponent implements ListCellRenderer {
   private static final long serialVersionUID = 4235299926570675081L;
@@ -86,7 +85,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
   
   private int keyWidth;       // width of the key column
   private int currentIndex;   // current index (line number)
-  private WeakReference currentLine;   // current line
+  private WeakReference<Line> currentLine;   // current line
   private int lineWidth;      // current width of line
   
   /**
@@ -104,7 +103,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
    */
   public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
     //--- Remember the Parameters ---
-    currentLine  = new WeakReference( value );    // We just need it for rendering
+    currentLine  = new WeakReference<Line>( (Line) value );    // We just need it for rendering
     currentIndex = index+1;
     
     //--- Get some Constants ---
@@ -209,11 +208,8 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
    */
   private int maxKeyWidth( PropertyModel model, FontMetrics fm ) {
     int width = 0;
-    for (
-        Iterator it = model.getResourceMap().keySet().iterator();
-        it.hasNext();
-        ) {
-      String[] keyLines = splitLines( (String) it.next() );
+    for ( String line : model.getResourceMap().keySet() ) {
+      String[] keyLines = splitLines( line );
       width = Math.max( width, maxLineWidth( keyLines, fm ) );
     }
     return width;
@@ -228,8 +224,8 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
    */
   private int maxLineWidth( String[] lines, FontMetrics fm ) {
     int width = 0;
-    for (int ix = 0; ix < lines.length; ix++) {
-      width = Math.max( width, fm.stringWidth( lines[ix] ) );
+    for ( String line : lines ) {
+      width = Math.max( width, fm.stringWidth( line ) );
     }
     return width;
   }
@@ -248,8 +244,8 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
     /*TODO: also accept RTL text direction! */
     int y = fm.getMaxAscent();
     
-    for (int ix=0; ix < lines.length; ix++) {
-      g2d.drawString( lines[ix], xleft, y );
+    for ( String line : lines ) {
+      g2d.drawString( line, xleft, y );
       y += fm.getHeight();
     }
   }
@@ -266,7 +262,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
     super.paintComponent( g );
 
     //--- Get the line to be drawn ---
-    final Line line = (Line) currentLine.get();
+    final Line line = currentLine.get();
     if (line == null) {
       return;   // Line object does not exist anymore
     }

@@ -4,7 +4,7 @@
 <!-- Copyright (c) 2005 Richard "Shred" Körber -->
 <!-- All Rights Reserved. -->
 <!-- Released under MPL 1.1/GPL 2.0/LGPL 2.1 -->
-<!-- $Id: build.xml 68 2006-02-02 12:51:43Z shred $ -->
+<!-- $Id: build.xml 106 2006-08-08 08:06:51Z shred $ -->
 
 <project name="jinn" default="build" basedir=".">
   <description>
@@ -51,7 +51,7 @@
     <unjar src="${lib}/jshred.jar" dest="${build}"/>
     <delete dir="${build}/META-INF"/>
     <!-- Compile from src to build -->
-    <javac srcdir="${src}" destdir="${build}" deprecation="on" optimize="on" source="1.4" target="1.4">
+    <javac srcdir="${src}" destdir="${build}" deprecation="on" optimize="on" source="1.5" target="1.5">
       <classpath refid="project.class.path"/>
     </javac>
     <!-- Copy Image files -->
@@ -85,7 +85,7 @@
              charset="UTF-8"
              windowtitle="jinn">
       <doctitle><![CDATA[<h1>jinn</h1>]]></doctitle>
-      <bottom><![CDATA[<i>Copyright &copy; 2005 Richard "Shred" Körber</i>]]></bottom>
+      <bottom><![CDATA[<i>Copyright &copy; 2006 Richard "Shred" Körber</i>]]></bottom>
     </javadoc>
   </target>
   

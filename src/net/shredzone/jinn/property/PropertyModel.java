@@ -81,13 +81,16 @@ import javax.swing.event.ListDataListener;
  * All methods are <em>not</em> synchronized!
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyModel.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: PropertyModel.java 106 2006-08-08 08:06:51Z shred $
  */
 public class PropertyModel implements ListModel {
   private final PropertyChangeListener listener = new MyPropertyChangeListener();
-  private final List lContent   = new ArrayList();
-  private final Map  mResources = new HashMap();
-  private final Set  sListener  = new HashSet();
+  private final List<Line> lContent
+      = new ArrayList<Line>();
+  private final Map<String,PropertyLine> mResources
+      = new HashMap<String,PropertyLine>();
+  private final Set<WeakReference<ListDataListener>> sListener
+      = new HashSet<WeakReference<ListDataListener>>();
  
   /**
    * Create an empty Resource.
@@ -100,7 +103,7 @@ public class PropertyModel implements ListModel {
    * as if it was freshly constructed.
    */
   public void clear() {
-    final int cnt = lContent.size();
+    int cnt = lContent.size();
     lContent.clear();
     mResources.clear();
     fireDataRemoved( 0, cnt-1 );
@@ -153,9 +156,7 @@ public class PropertyModel implements ListModel {
    * @throws IOException  if it could not write.
    */
   public void write( PropertiesWriter out ) throws IOException {
-    final Iterator it = lContent.iterator();
-    while (it.hasNext()) {
-      final Line line = (Line) it.next();
+    for( Line line : lContent ) {
       out.writeLine( line );
     }
   }
@@ -168,7 +169,7 @@ public class PropertyModel implements ListModel {
    * @return  List containing all Line objects of this model, in the
    *    original sequence they were loaded from the .properties file.
    */
-  public List getLines() {
+  public List<Line> getLines() {
     return Collections.unmodifiableList( lContent );
   }
   
@@ -179,7 +180,7 @@ public class PropertyModel implements ListModel {
    * 
    * @return  Map containing all PropertyLine objects.
    */
-  public Map getResourceMap() {
+  public Map<String,PropertyLine> getResourceMap() {
     return Collections.unmodifiableMap( mResources );
   }
 
@@ -190,7 +191,7 @@ public class PropertyModel implements ListModel {
    * @return PropertyLine or null if the key is not known.
    */
   public PropertyLine getPropertyLine( String key ) {
-    return (PropertyLine) mResources.get( key );
+    return mResources.get( key );
   }
   
   /**
@@ -205,8 +206,8 @@ public class PropertyModel implements ListModel {
     
     //--- Remember Key ---
     if (line instanceof PropertyLine) {
-      final String key = ((PropertyLine) line).getKey();
-      mResources.put( key, line );
+      final PropertyLine prop = (PropertyLine) line;
+      mResources.put( prop.getKey(), prop );
     }
 
     //--- Register a Listener ---
@@ -251,8 +252,8 @@ public class PropertyModel implements ListModel {
     
     //--- Remember Key ---
     if (line instanceof PropertyLine) {
-      final String key = ((PropertyLine) line).getKey();
-      mResources.put( key, line );
+      final PropertyLine prop = (PropertyLine) line;
+      mResources.put( prop.getKey(), prop );
     }
 
     //--- Register a Listener ---
@@ -291,27 +292,23 @@ public class PropertyModel implements ListModel {
    *   merge operation. The translator will have to translate these keys
    *   because they were freshly added.
    */
-  public Set merge( PropertyModel r ) {
+  public Set<String> merge( PropertyModel r ) {
     // The following abbreviations mean:
     //   self  = this model, where data is merged into
     //   ref   = reference model, where data is merged from
     
     //--- Keep the old header ---
-    List lHeader = new ArrayList();
-    for (
-        Iterator it = lContent.iterator();
-        it.hasNext();
-        ) {
-      final Line line = (Line) it.next();
+    List<CommentLine> lHeader = new ArrayList<CommentLine>();
+    for ( Line line : lContent ) {
       if (line instanceof CommentLine) {
-        lHeader.add( line );
+        lHeader.add( (CommentLine) line );
       }else {
         break;
       }
     }
     
     //--- Keep the map of translated properties ---
-    final Map mOldMap = new HashMap( mResources );
+    final Map<String,PropertyLine> mOldMap = new HashMap<String,PropertyLine>( mResources );
     
     //--- Clean up this model ---
     clear();
@@ -323,11 +320,8 @@ public class PropertyModel implements ListModel {
     //--- First add a header ---
     if (lHeader.size()>0) {
       // Add our own header
-      for (
-          Iterator it = lHeader.iterator();
-          it.hasNext();
-          ) {
-        addLine( (Line) it.next() );
+      for ( Line line : lHeader ) {
+        addLine( line );
       }
       
       // Skip the reference's initial header
@@ -339,7 +333,7 @@ public class PropertyModel implements ListModel {
       // Add the reference header
       
       while (refIx < refSize && r.lContent.get(refIx) instanceof CommentLine) {
-        final Line refLine = (Line) r.lContent.get(refIx);
+        final Line refLine = r.lContent.get(refIx);
         final Line refLineClone = (Line) refLine.clone();
         addLine( refLineClone );
         refIx++;
@@ -349,9 +343,9 @@ public class PropertyModel implements ListModel {
     lHeader = null;       // We don't need it any longer
     
     //--- Now add the rest ---
-    final Set sNewKeys = new HashSet();
+    final Set<String> sNewKeys = new HashSet<String>();
     while (refIx < refSize) {
-      final Line refLine = (Line) r.lContent.get(refIx++);
+      final Line refLine = r.lContent.get(refIx++);
       final Line refLineClone = (Line) refLine.clone();
       
       if (refLineClone instanceof PropertyLine) {
@@ -362,7 +356,7 @@ public class PropertyModel implements ListModel {
         
         if (mOldMap.containsKey( refPropKey )) {
           // Key is known, change the value.
-          final PropertyLine selfProp = (PropertyLine) mOldMap.get( refPropKey );
+          final PropertyLine selfProp = mOldMap.get( refPropKey );
           refPropClone.setValue( selfProp.getValue() );
         }else {
           // Key is not known! Remember that it was copied unchanged.
@@ -390,6 +384,17 @@ public class PropertyModel implements ListModel {
   }
 
   /**
+   * Get the Line element of a certain index. This method satisfies the
+   * ListModel interface. Use {@link #getLineAt(int)} instead.
+   * 
+   * @param    index        Line number
+   * @return   Line object of that line
+   */
+  public Object getElementAt( int index ) {
+    return getLineAt( index );
+  }
+  
+  /**
    * Get the Line element of a certain index. The returned object is
    * guaranteed to be an instance of Line. The Object type is just required
    * to satisfy the ListModel interface.
@@ -397,7 +402,7 @@ public class PropertyModel implements ListModel {
    * @param    index        Line number
    * @return   Line object of that line
    */
-  public Object getElementAt( int index ) {
+  public Line getLineAt( int index ) {
     return lContent.get( index );
   }
 
@@ -409,18 +414,14 @@ public class PropertyModel implements ListModel {
    */
   public void addListDataListener( ListDataListener l ) {
     //--- Check if the Listener is already added ---
-    for (
-        Iterator it = sListener.iterator();
-        it.hasNext();
-        ) {
-      final WeakReference wr = (WeakReference) it.next();
+    for ( WeakReference<ListDataListener> wr : sListener ) {
       if (wr.get() == l) {
         return;
       }
     }
     
     //--- Add the Listener ---
-    sListener.add( new WeakReference( l ) );
+    sListener.add( new WeakReference<ListDataListener>( l ) );
   }
 
   /**
@@ -430,10 +431,10 @@ public class PropertyModel implements ListModel {
    */
   public void removeListDataListener( ListDataListener l ) {
     for (
-        Iterator it = sListener.iterator();
+        Iterator<WeakReference<ListDataListener>> it = sListener.iterator();
         it.hasNext();
         ) {
-      final WeakReference wr = (WeakReference) it.next();
+      final WeakReference<ListDataListener> wr = it.next();
       if (wr.get() == l) {
         it.remove();
         break;
@@ -455,11 +456,10 @@ public class PropertyModel implements ListModel {
     );
 
     for (
-        Iterator it = sListener.iterator();
+        Iterator<WeakReference<ListDataListener>> it = sListener.iterator();
         it.hasNext();
         ) {
-      final WeakReference wr = (WeakReference) it.next();
-      final ListDataListener l = (ListDataListener) wr.get();
+      final ListDataListener l = it.next().get();
       if (l != null) {
         l.contentsChanged( e );
       }else {
@@ -481,9 +481,11 @@ public class PropertyModel implements ListModel {
         start, end
     );
 
-    for( Iterator it = sListener.iterator(); it.hasNext(); ) {
-      final WeakReference wr = (WeakReference) it.next();
-      final ListDataListener l = (ListDataListener) wr.get();
+    for (
+        Iterator<WeakReference<ListDataListener>> it = sListener.iterator();
+        it.hasNext();
+        ) {
+      final ListDataListener l = it.next().get();
       if (l != null) {
         l.intervalAdded( e );
       }else {
@@ -505,9 +507,11 @@ public class PropertyModel implements ListModel {
         start, end
     );
 
-    for( Iterator it = sListener.iterator(); it.hasNext(); ) {
-      final WeakReference wr = (WeakReference) it.next();
-      final ListDataListener l = (ListDataListener) wr.get();
+    for (
+        Iterator<WeakReference<ListDataListener>> it = sListener.iterator();
+        it.hasNext();
+        ) {
+      final ListDataListener l = it.next().get();
       if (l != null) {
         l.intervalRemoved( e );
       }else {

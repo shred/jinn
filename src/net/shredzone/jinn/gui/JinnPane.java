@@ -85,7 +85,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * of lists, text area and other components.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnPane.java 85 2006-05-18 07:00:11Z shred $
+ * @version $Id: JinnPane.java 106 2006-08-08 08:06:51Z shred $
  */
 public class JinnPane extends JPanel {
   private static final long serialVersionUID = 1614457053627926890L;
@@ -137,7 +137,7 @@ public class JinnPane extends JPanel {
     final PropertyKeyModel pkm = new PropertyKeyModel( model );
     setModel( pkm );
     if (pkm.getSize() > 0) {
-      selectKey( (String) pkm.getElementAt( 0 ) );
+      selectKey( pkm.getKeyAt( 0 ) );
     }else {
       selectKey( null );
     }
@@ -152,7 +152,7 @@ public class JinnPane extends JPanel {
     PropertyModel editModel = (PropertyModel) registry.get( JinnRegistryKeys.MODEL_TRANSLATION );
     if (editModel != null) {
       jlKeys.setModel( new DefaultListModel() );  // Remove old model
-      final Set newLines = editModel.merge( model );
+      final Set<String> newLines = editModel.merge( model );
       final PropertyKeyRefModel pkrm = new PropertyKeyRefModel( editModel, model ); 
       pkrm.setAddedKeys( newLines );
       setModel( pkrm );
@@ -190,7 +190,7 @@ public class JinnPane extends JPanel {
           final Document doc = jtaTranslation.getDocument();
           doc.removeDocumentListener( docListener );
 
-          final String val = selTransLine.getValue();
+          String val = selTransLine.getValue();
           jtaTranslation.setText( val );
 //          jtaTranslation.selectAll();
           undoManager.discardAllEdits();

@@ -54,7 +54,7 @@ import java.io.Writer;
  * wrapped properly.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesWriter.java 69 2006-02-02 13:12:00Z shred $
+ * @version $Id: PropertiesWriter.java 106 2006-08-08 08:06:51Z shred $
  */
 public class PropertiesWriter extends Writer {
   private final static char[] HEX = new char[] {
@@ -224,7 +224,7 @@ public class PropertiesWriter extends Writer {
    */
   public int writeIndented( String str ) throws IOException {
     while (str.length() < indent) {
-      str += " ";     // yep, this is not really performant... ;)
+      str += " ";     //TODO: yep, this is not really performant... ;)
     }
     writeEscaped( str );
     return str.length();
@@ -409,7 +409,7 @@ public class PropertiesWriter extends Writer {
    */
   private String escape( String str ) {
     boolean esc = true;
-    StringBuffer buff = new StringBuffer();
+    StringBuilder buff = new StringBuilder();
     
     final int len = str.length();
     for (int ix = 0; ix < len; ix++) {

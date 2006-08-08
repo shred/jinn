@@ -57,7 +57,7 @@ import java.text.*;
  * Informs the user about an Exception that has occured.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: ExceptionDialog.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: ExceptionDialog.java 106 2006-08-08 08:06:51Z shred $
  */
 public class ExceptionDialog {
   private static boolean debugMode = false;
@@ -93,14 +93,12 @@ public class ExceptionDialog {
     //--- Write a stacktrace to stderr ---
     ex.printStackTrace();
     
-    //--- Create the arguments array ---
-    Object[] args = new Object[] {
-      op,
-      ex.getLocalizedMessage()
-    };
-    
     //--- Create a message string ---
-    String message = MessageFormat.format( L.tr("exception.msg"), args );
+    String message = MessageFormat.format(
+        L.tr("exception.msg"),
+        op,
+        ex.getLocalizedMessage()
+    );
 
     //--- Show the dialog ---
     Object msg = message;

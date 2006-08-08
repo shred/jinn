@@ -1,6 +1,10 @@
 # CHANGELOG -- JINN
 # (C) Richard "Shred" Körber
-# $Id: changelog.txt 86 2006-07-13 14:02:46Z shred $
+# $Id: changelog.txt 106 2006-08-08 08:06:51Z shred $
+
+
+2006-08-08 shred
+  * Using the new Java 5 features. Jinn now requires Java 5 to run.
 
 2006-07-13 shred
   * Correctly started a worker thread from the AWT event thread.

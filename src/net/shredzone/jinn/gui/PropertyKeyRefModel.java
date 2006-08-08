@@ -57,11 +57,11 @@ import net.shredzone.jinn.property.PropertyModel;
  * with the reference model.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyKeyRefModel.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: PropertyKeyRefModel.java 106 2006-08-08 08:06:51Z shred $
  */
 public class PropertyKeyRefModel extends PropertyKeyModel {
   protected final PropertyModel reference;
-  private Set sNewKeys = null;
+  private Set<String> sNewKeys = null;
   
   /**
    * Create a new PropertyKeyModel for a given PropertyModel and
@@ -82,7 +82,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
    * 
    * @param keys    Set of added keys
    */
-  public void setAddedKeys( Set keys ) {
+  public void setAddedKeys( Set<String> keys ) {
     this.sNewKeys = keys;
   }
 
@@ -104,8 +104,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
     // Find the next untranslated key
     final int cnt = lKeys.size();
     while (ix < cnt) {
-      final String check = (String) lKeys.get( ix );
-      
+      final String check = lKeys.get( ix );
       if (isNew( check ) || !isChanged( check )) {
         return check;
       }

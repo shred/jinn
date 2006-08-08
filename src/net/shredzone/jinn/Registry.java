@@ -61,10 +61,10 @@ import java.util.Map;
  * This class is threadsafe.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Registry.java 85 2006-05-18 07:00:11Z shred $
+ * @version $Id: Registry.java 106 2006-08-08 08:06:51Z shred $
  */
 public class Registry {
-  private final Map mData = new HashMap();
+  private final Map<String,Object> mData = new HashMap<String,Object>();
   private final PropertyChangeSupport support = new PropertyChangeSupport( this );
   
   /**
@@ -82,7 +82,7 @@ public class Registry {
       throw new IllegalArgumentException( "key must not be null" );
     
     synchronized( this ) {
-      final Object old = mData.get( key );
+      Object old = mData.get( key );
       
       if (old==null && val==null) return;         // Both are null
       if (old!=null && old.equals(val)) return;   // Unchanged
@@ -92,16 +92,6 @@ public class Registry {
     }
   }
 
-  /**
-   * Set a boolean value.
-   * 
-   * @param key  Registry key to be set
-   * @param val  New boolean value
-   */
-  public void put( String key, boolean val ) {
-    put( key, new Boolean(val) );
-  }
-  
   /**
    * Get the value for a registry key. If the value was not previously
    * set, null will be returned. Note that null will also be returned if
@@ -128,7 +118,7 @@ public class Registry {
    * @return  Current value as String, may be null.
    */
   public String getString( String key ) {
-    final Object val = get( key );
+    Object val = get( key );
     return (val != null ? val.toString() : null);
   }
   
@@ -143,7 +133,7 @@ public class Registry {
    */
   public boolean is( String key ) {
     Boolean bool = (Boolean) get( key );
-    return( bool!=null && bool.booleanValue() );
+    return( bool!=null && bool );
   }
 
   /**
