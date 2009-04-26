@@ -47,6 +47,7 @@ package net.shredzone.jinn.property;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
+import java.util.Arrays;
 
 /**
  * This Writer writes a properties file and converts it into a uniform
@@ -54,7 +55,7 @@ import java.io.Writer;
  * wrapped properly.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesWriter.java 106 2006-08-08 08:06:51Z shred $
+ * @version $Id: PropertiesWriter.java 285 2009-04-26 22:42:14Z shred $
  */
 public class PropertiesWriter extends Writer {
   private final static char[] HEX = new char[] {
@@ -145,6 +146,7 @@ public class PropertiesWriter extends Writer {
    * @param   len     Length of the buffer.
    * @throws IOException if could not write.
    */
+  @Override
   public void write( char[] cbuf, int off, int len ) throws IOException {
     synchronized( lock ) {
       byte[] bbuf = new byte[len];
@@ -167,6 +169,7 @@ public class PropertiesWriter extends Writer {
    * 
    * @throws IOException if could not flush.
    */
+  @Override
   public void flush() throws IOException {
     synchronized( lock ) {
       out.flush();
@@ -178,6 +181,7 @@ public class PropertiesWriter extends Writer {
    * 
    * @throws IOException if could not close.
    */
+  @Override
   public void close() throws IOException {
     synchronized( lock ) {
       out.close();
@@ -223,11 +227,10 @@ public class PropertiesWriter extends Writer {
    * @throws IOException if could not write.
    */
   public int writeIndented( String str ) throws IOException {
-    while (str.length() < indent) {
-      str += " ";     //TODO: yep, this is not really performant... ;)
-    }
-    writeEscaped( str );
-    return str.length();
+    char[] buffer = new char[indent];
+    Arrays.fill(buffer, ' ');
+    write(buffer);
+    return buffer.length;
   }
 
   /**

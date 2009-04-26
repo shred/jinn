@@ -58,7 +58,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Show the search window.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SearchAction.java 84 2006-05-17 12:46:49Z shred $
+ * @version $Id: SearchAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public class SearchAction extends BaseSearchAction {
   private static final long serialVersionUID = 3478879399066426698L;
@@ -83,6 +83,7 @@ public class SearchAction extends BaseSearchAction {
    * 
    * @param  e      ActionEvent, may be null if directly invoked
    */
+  @Override
   public void perform( ActionEvent e ) {
     int rc = SearchPane.showSearchDialog(
         registry,

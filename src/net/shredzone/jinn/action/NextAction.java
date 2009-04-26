@@ -64,7 +64,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Jump to the next untranslated string.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: NextAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: NextAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public class NextAction extends BaseAction {
   private static final long serialVersionUID = 7168091727814398003L;
@@ -99,6 +99,7 @@ public class NextAction extends BaseAction {
    * 
    * @param  e      ActionEvent, may be null if directly invoked
    */
+  @Override
   public void perform( ActionEvent e ) {
     
     final PropertyKeyModel keyModel = (PropertyKeyModel) registry.get( JinnRegistryKeys.MODEL_REFERENCE_KEY );

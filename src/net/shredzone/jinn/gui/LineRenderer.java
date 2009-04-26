@@ -73,7 +73,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * implemented.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: LineRenderer.java 106 2006-08-08 08:06:51Z shred $
+ * @version $Id: LineRenderer.java 285 2009-04-26 22:42:14Z shred $
  */
 public class LineRenderer extends JComponent implements ListCellRenderer {
   private static final long serialVersionUID = 4235299926570675081L;
@@ -255,6 +255,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
    * 
    * @param   g       Graphics context.
    */
+  @Override
   protected void paintComponent( Graphics g ) {
     /*TODO: also accept RTL text direction! The columns need to be mirrored
      *  and right aligned!

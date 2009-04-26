@@ -62,9 +62,10 @@ import net.shredzone.jinn.property.PropertyModel;
  * The common superclass for all search operation actions.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: BaseSearchAction.java 69 2006-02-02 13:12:00Z shred $
+ * @version $Id: BaseSearchAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public abstract class BaseSearchAction extends BaseAction {
+  private static final long serialVersionUID = -1766114067062536829L;
   protected final Registry registry;
   
   /**

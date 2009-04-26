@@ -57,12 +57,14 @@ import net.shredzone.jinn.pool.ImgPool;
  * Find the next or previous occurance of a search string.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SearchNextAction.java 84 2006-05-17 12:46:49Z shred $
+ * @version $Id: SearchNextAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public class SearchNextAction extends BaseSearchAction {
+  private static final long serialVersionUID = -3246883749259834931L;
   public static boolean NEXT = false;
   public static boolean PREVIOUS = true;
   
+  @SuppressWarnings("unused")
   private final boolean direction;
   
   /**
@@ -89,6 +91,7 @@ public class SearchNextAction extends BaseSearchAction {
    * 
    * @param  e      ActionEvent, may be null if directly invoked
    */
+  @Override
   public void perform( ActionEvent e ) {
     
   }

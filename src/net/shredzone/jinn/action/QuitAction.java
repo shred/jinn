@@ -62,7 +62,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Quit the application.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: QuitAction.java 85 2006-05-18 07:00:11Z shred $
+ * @version $Id: QuitAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public class QuitAction extends BaseAction {
   private static final long serialVersionUID = -2916484363510929249L;
@@ -91,6 +91,7 @@ public class QuitAction extends BaseAction {
    * 
    * @param  e      ActionEvent, may be null if directly invoked
    */
+  @Override
   public void perform( ActionEvent e ) {
     final File target = (File) registry.get( JinnRegistryKeys.FILE_TRANSLATION );
     final PropertyModel model = (PropertyModel) registry.get( JinnRegistryKeys.MODEL_TRANSLATION );

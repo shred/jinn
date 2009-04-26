@@ -63,9 +63,10 @@ import javax.swing.KeyStroke;
  * to use <code>EventQueue.invokeLater()</code>.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: AsyncBaseAction.java 86 2006-07-13 14:02:46Z shred $
+ * @version $Id: AsyncBaseAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public abstract class AsyncBaseAction extends BaseAction {
+  private static final long serialVersionUID = 8756416480105882092L;
 
   /**
    * Create a new, asynchronous Action.
@@ -84,6 +85,7 @@ public abstract class AsyncBaseAction extends BaseAction {
    *
    * @param   e       ActionEvent
    */
+  @Override
   public void actionPerformed( final ActionEvent e ) {
     //--- Create background thread ---
     Thread thread = new Thread( new Runnable() {

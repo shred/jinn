@@ -67,9 +67,10 @@ import net.shredzone.jinn.pool.ImgPool;
  * inner subclasses for the standard actions: cut, copy, paste, undo, redo.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: TextComponentAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: TextComponentAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public abstract class TextComponentAction extends BaseAction implements DocumentListener, UndoableEditListener, CaretListener {
+  private static final long serialVersionUID = -8651443172426392912L;
   protected final JTextComponent comp;
   
   /**
@@ -194,6 +195,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
     /**
      * Update the own state.
      */
+    @Override
     protected void updateState() {
       setEnabled( isSelected() );
     }
@@ -203,6 +205,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
      * 
      * @param  e      ActionEvent
      */
+    @Override
     public void perform( ActionEvent e ) {
       comp.cut();
     }
@@ -236,6 +239,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
     /**
      * Update the own state.
      */
+    @Override
     protected void updateState() {
       setEnabled( isSelected() );
     }
@@ -245,6 +249,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
      * 
      * @param  e      ActionEvent
      */
+    @Override
     public void perform( ActionEvent e ) {
       comp.copy();
     }
@@ -277,6 +282,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
     /**
      * Update the own state.
      */
+    @Override
     protected void updateState() {
       // paste is always enabled
     }
@@ -286,6 +292,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
      * 
      * @param  e      ActionEvent
      */
+    @Override
     public void perform( ActionEvent e ) {
       comp.paste();
     }
@@ -322,6 +329,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
     /**
      * Update the own state.
      */
+    @Override
     protected void updateState() {
       setEnabled( undo.canUndo() );
     }
@@ -331,6 +339,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
      * 
      * @param  e      ActionEvent
      */
+    @Override
     public void perform( ActionEvent e ) {
       if (undo.canUndo()) {
         undo.undo();
@@ -373,6 +382,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
     /**
      * Update the own state.
      */
+    @Override
     protected void updateState() {
       setEnabled( undo.canRedo() );
     }
@@ -382,6 +392,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
      * 
      * @param  e      ActionEvent
      */
+    @Override
     public void perform( ActionEvent e ) {
       if (undo.canRedo()) {
         undo.redo();

@@ -68,10 +68,11 @@ import net.shredzone.jshred.swing.SwingUtils;
  * exits.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: BaseAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: BaseAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public abstract class BaseAction extends AbstractAction {
-  
+  private static final long serialVersionUID = -8894889050966762864L;
+
   /**
    * Create a new, synchronous Action. Event processing will be stopped
    * during execution, which also means that there is no GUI update.

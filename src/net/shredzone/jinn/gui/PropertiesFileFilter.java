@@ -55,7 +55,7 @@ import net.shredzone.jinn.i18n.L;
  * A FileFilter that only shows ".properties" files.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesFileFilter.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: PropertiesFileFilter.java 285 2009-04-26 22:42:14Z shred $
  */
 public class PropertiesFileFilter extends FileFilter {
 
@@ -72,6 +72,7 @@ public class PropertiesFileFilter extends FileFilter {
    * @param  f      File to check
    * @return true: Accept this file
    */
+  @Override
   public boolean accept( File f ) {
     if( f.isDirectory() ) return true;
     if( f.isHidden() ) return false;
@@ -83,6 +84,7 @@ public class PropertiesFileFilter extends FileFilter {
    * 
    * @return  Description
    */
+  @Override
   public String getDescription() {
     return L.tr("pff.desc");
   }

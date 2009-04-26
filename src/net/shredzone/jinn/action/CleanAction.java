@@ -62,7 +62,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Clean the translation text.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: CleanAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: CleanAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public class CleanAction extends BaseAction {
   private static final long serialVersionUID = -5001726514056771893L;
@@ -104,6 +104,7 @@ public class CleanAction extends BaseAction {
    * 
    * @param  e      ActionEvent, may be null if directly invoked
    */
+  @Override
   public void perform( ActionEvent e ) {
     editor.setText( "" );
   }

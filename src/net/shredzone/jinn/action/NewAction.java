@@ -60,7 +60,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Start a new set of properties.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: NewAction.java 85 2006-05-18 07:00:11Z shred $
+ * @version $Id: NewAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public class NewAction extends BaseAction {
   private static final long serialVersionUID = -5321317574685533552L;
@@ -87,6 +87,7 @@ public class NewAction extends BaseAction {
    * 
    * @param  e      ActionEvent, may be null if directly invoked
    */
+  @Override
   public void perform( ActionEvent e ) {
     if (registry.is(  JinnRegistryKeys.FLAG_CHANGED )) {
       int result = JOptionPane.showConfirmDialog(

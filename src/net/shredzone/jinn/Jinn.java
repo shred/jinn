@@ -90,7 +90,7 @@ import net.shredzone.jinn.i18n.L;
  * taken by another project. ;-) 
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Jinn.java 85 2006-05-18 07:00:11Z shred $
+ * @version $Id: Jinn.java 285 2009-04-26 22:42:14Z shred $
  */
 public class Jinn {
   private final static Preferences prefs = java.util.prefs.Preferences.userNodeForPackage( Jinn.class );
@@ -108,6 +108,7 @@ public class Jinn {
     
     frame.setDefaultCloseOperation( JFrame.DO_NOTHING_ON_CLOSE );
     frame.addWindowListener( new WindowAdapter() {
+      @Override
       public void windowClosing ( WindowEvent e ) {
         storeFrame();
         QuitAction aQuit = (QuitAction) registry.get( JinnRegistryKeys.ACTION_QUIT );

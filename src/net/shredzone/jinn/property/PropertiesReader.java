@@ -57,7 +57,7 @@ import java.io.Reader;
  * single line.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesReader.java 106 2006-08-08 08:06:51Z shred $
+ * @version $Id: PropertiesReader.java 285 2009-04-26 22:42:14Z shred $
  */
 public class PropertiesReader extends Reader {
   private final InputStream in;
@@ -198,6 +198,7 @@ public class PropertiesReader extends Reader {
    * @return  Character read, or -1 if EOF was reached
    * @throws IOException if it could not read
    */
+  @Override
   public int read() throws IOException {
     synchronized( lock ) {
       return readUnwrapped();
@@ -232,6 +233,7 @@ public class PropertiesReader extends Reader {
    * @return  Number of characters actually read, or -1 if EOF was detected
    * @throws IOException if it could not read
    */
+  @Override
   public int read( char[] cbuf, int off, int len ) throws IOException {
     synchronized( lock ) {
       int readcnt = 0;
@@ -250,6 +252,7 @@ public class PropertiesReader extends Reader {
    * 
    * @throws IOException  if it could not close.
    */
+  @Override
   public void close() throws IOException {
     synchronized( lock ) {
       in.close();
@@ -402,7 +405,7 @@ public class PropertiesReader extends Reader {
         case 'n': ch = '\n'; break;
         case 'f': ch = '\f'; break;
       }
-      buff.replace( pos, endpos+1, String.valueOf( (char) ch ) );
+      buff.replace( pos, endpos+1, String.valueOf( ch ) );
       
       pos = buff.indexOf( "\\", pos+1 );
     }

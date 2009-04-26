@@ -1,7 +1,10 @@
 # CHANGELOG -- JINN
 # (C) Richard "Shred" Körber
-# $Id: changelog.txt 106 2006-08-08 08:06:51Z shred $
+# $Id: changelog.txt 285 2009-04-26 22:42:14Z shred $
 
+
+2009-04-27 shred
+  * Fixed some todos and compiler warnings.
 
 2006-08-08 shred
   * Using the new Java 5 features. Jinn now requires Java 5 to run.

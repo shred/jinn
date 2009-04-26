@@ -51,7 +51,7 @@ import java.beans.PropertyChangeSupport;
  * This is an abstract implementation of the Line interface.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: AbstractLine.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: AbstractLine.java 285 2009-04-26 22:42:14Z shred $
  */
 public abstract class AbstractLine implements Line {
   private PropertyChangeSupport support = new PropertyChangeSupport( this );
@@ -63,6 +63,7 @@ public abstract class AbstractLine implements Line {
    * 
    * @return    a cloned Line
    */
+  @Override
   public Object clone() {
     try {
       final AbstractLine cl = (AbstractLine) super.clone();

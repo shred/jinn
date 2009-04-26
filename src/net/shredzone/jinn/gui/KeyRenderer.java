@@ -60,7 +60,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * A KeyRenderer renders a Key line shown in a JList.
  * 
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: KeyRenderer.java 72 2006-02-02 22:51:00Z shred $
+ * @version $Id: KeyRenderer.java 285 2009-04-26 22:42:14Z shred $
  */
 public class KeyRenderer extends DefaultListCellRenderer {
   private static final long serialVersionUID = -1559580545428262000L;
@@ -83,6 +83,7 @@ public class KeyRenderer extends DefaultListCellRenderer {
    * @param  cellHasFocus   true: line is focussed
    * @return  Component that draws this line
    */
+  @Override
   public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
     JLabel comp = (JLabel) super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
     

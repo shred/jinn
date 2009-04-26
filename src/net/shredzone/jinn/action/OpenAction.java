@@ -67,7 +67,7 @@ import net.shredzone.jinn.property.PropertyModel;
  * Open a properties file
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: OpenAction.java 85 2006-05-18 07:00:11Z shred $
+ * @version $Id: OpenAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public class OpenAction extends AsyncBaseAction {
   private static final long serialVersionUID = -1701159023065148732L;
@@ -94,6 +94,7 @@ public class OpenAction extends AsyncBaseAction {
    * 
    * @param  e      ActionEvent, may be null if directly invoked
    */
+  @Override
   public void perform( ActionEvent e ) {
     /*TODO: Ask for confirmance */
     

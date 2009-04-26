@@ -62,7 +62,7 @@ import net.shredzone.jinn.pool.ImgPool;
  * Go to a key.
  *
  * @author  Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: GotoAction.java 68 2006-02-02 12:51:43Z shred $
+ * @version $Id: GotoAction.java 285 2009-04-26 22:42:14Z shred $
  */
 public class GotoAction extends BaseAction {
   private static final long serialVersionUID = -6185052702783447904L;
@@ -94,6 +94,7 @@ public class GotoAction extends BaseAction {
    * 
    * @param  e      ActionEvent, may be null if directly invoked
    */
+  @Override
   public void perform( ActionEvent e ) {
     String input = JOptionPane.showInputDialog(
         getFrame( e ),
