@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Jinn Web Start Deployment -->
+
+<jnlp spec="1.0+" codebase="http://static.shredzone.org/jinn/" href="jinn.jnlp">
+  <information>
+    <title>Jinn</title>
+    <vendor>Richard "Shred" Körber</vendor>
+    <homepage href="http://jinn.shredzone.org"/>
+    <description>A translation tool for Java properties files.</description>
+    <description kind="short">Java translation tool</description>
+    <offline-allowed/>
+  </information>
+
+  <security>
+    <all-permissions/>
+  </security>
+
+  <resources>
+    <j2se href="http://java.sun.com/products/autodl/j2se" version="1.4+"/>
+    <jar href="jinn.jar"/>
+  </resources>
+
+  <application-desc/>
+</jnlp>

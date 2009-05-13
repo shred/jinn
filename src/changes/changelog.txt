@@ -1,0 +1,53 @@
+====
+    jinn - A property translation editor
+
+    Copyright (C) 2009 Richard "Shred" Körber
+      http://jinn.shredzone.org
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+====
+# CHANGELOG -- JINN
+# (C) Richard "Shred" Körber
+# $Id: changelog.txt 315 2009-05-13 19:32:40Z shred $
+
+
+2009-04-27 shred
+  * Fixed some todos and compiler warnings.
+
+2006-08-08 shred
+  * Using the new Java 5 features. Jinn now requires Java 5 to run.
+
+2006-07-13 shred
+  * Correctly started a worker thread from the AWT event thread.
+
+2006-05-18 shred
+  * Change flag introduced. The save buttons are only activated if there
+    are changes that can be saved. Quitting Jinn will now open a confirmation
+    dialog if there are unsaved changes.
+
+2006-05-17 shred
+  * Language changeable by menu.
+
+2006-02-02 shred
+  * BUGFIX: Major bug, escaped character sequences in properties files
+    were corrupted while reading.
+  * KeyRenderer now shows red and green bars additionally to the icons.
+
+2005-11-14 shred
+  * First alpha release. Jinn is functional, but not yet tested.
+
+2005-11-02 shred
+  * Birth of changelog
+
+#
