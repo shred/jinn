@@ -28,6 +28,7 @@ import java.util.prefs.Preferences;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 import net.shredzone.jinn.action.AboutAction;
 import net.shredzone.jinn.action.GotoAction;
@@ -64,7 +65,7 @@ import net.shredzone.jinn.i18n.L;
  * another project. ;-)
  * 
  * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Jinn.java 315 2009-05-13 19:32:40Z shred $
+ * @version $Id: Jinn.java 319 2009-05-13 22:11:49Z shred $
  */
 public class Jinn {
     private final static Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(Jinn.class);
@@ -80,7 +81,7 @@ public class Jinn {
 
         createActions();
 
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

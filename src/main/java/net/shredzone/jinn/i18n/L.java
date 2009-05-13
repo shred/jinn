@@ -20,7 +20,6 @@
 package net.shredzone.jinn.i18n;
 
 import java.util.MissingResourceException;
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 /**
@@ -28,13 +27,13 @@ import java.util.ResourceBundle;
  * <code>String text = L.tr("key");</code>.
  * 
  * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: L.java 315 2009-05-13 19:32:40Z shred $
+ * @version $Id: L.java 319 2009-05-13 22:11:49Z shred $
  */
 public class L {
     private static final ResourceBundle resource;
 
     static {
-        resource = PropertyResourceBundle.getBundle("net.shredzone.jinn.i18n.GUI");
+        resource = ResourceBundle.getBundle("net.shredzone.jinn.i18n.GUI");
     }
 
     /**
