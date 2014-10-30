@@ -4,7 +4,6 @@
     <groupId>org.shredzone.jinn</groupId>
     <artifactId>jinn</artifactId>
     <version>0.5-SNAPSHOT</version>
-    <packaging>pom</packaging>
     <name>Jinn</name>
     <description>A tool for easier translation of properties files</description>
     <url>http://jinn.shredzone.org</url>
@@ -23,7 +22,7 @@
     <issueManagement>
         <system>Redmine</system>
         <url>http://www.shredzone.org/projects/jinn/issues</url>
-    </issueManagement>   
+    </issueManagement>
     <developers>
         <developer>
             <id>shred</id>
@@ -62,8 +61,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
