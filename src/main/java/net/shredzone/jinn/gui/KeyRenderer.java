@@ -61,11 +61,12 @@ public class KeyRenderer extends DefaultListCellRenderer {
      *            true: line is focussed
      * @return Component that draws this line
      */
+    @SuppressWarnings("unchecked")
     @Override
-    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         JLabel comp = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-        final ListModel model = list.getModel();
+        final ListModel<String> model = (ListModel<String>) list.getModel();
 
         setIcon(iconEmpty);
 

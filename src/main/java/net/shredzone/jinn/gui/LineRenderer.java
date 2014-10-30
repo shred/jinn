@@ -47,7 +47,7 @@ import net.shredzone.jinn.property.PropertyModel;
  *
  * @author Richard "Shred" Körber
  */
-public class LineRenderer extends JComponent implements ListCellRenderer {
+public class LineRenderer extends JComponent implements ListCellRenderer<Line> {
     private static final long serialVersionUID = 4235299926570675081L;
 
     /* TODO: move those to the Style interface */
@@ -78,10 +78,9 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
      * @return Component that renders the cell. Usually this.
      */
     @Override
-    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends Line> list, Line value, int index, boolean isSelected, boolean cellHasFocus) {
         // --- Remember the Parameters ---
-        currentLine = new WeakReference<Line>((Line) value); // We just need it for
-                                                             // rendering
+        currentLine = new WeakReference<Line>(value); // We just need it for rendering
         currentIndex = index + 1;
 
         // --- Get some Constants ---

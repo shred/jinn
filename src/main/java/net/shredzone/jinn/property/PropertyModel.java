@@ -55,7 +55,7 @@ import javax.swing.event.ListDataListener;
  *
  * @author Richard "Shred" Körber
  */
-public class PropertyModel implements ListModel {
+public class PropertyModel implements ListModel<Line> {
     private final PropertyChangeListener listener = new MyPropertyChangeListener();
     private final List<Line> lContent = new ArrayList<Line>();
     private final Map<String, PropertyLine> mResources = new HashMap<String, PropertyLine>();
@@ -369,20 +369,7 @@ public class PropertyModel implements ListModel {
      * @return Line object of that line
      */
     @Override
-    public Object getElementAt(int index) {
-        return getLineAt(index);
-    }
-
-    /**
-     * Get the Line element of a certain index. The returned object is guaranteed to be an
-     * instance of Line. The Object type is just required to satisfy the ListModel
-     * interface.
-     *
-     * @param index
-     *            Line number
-     * @return Line object of that line
-     */
-    public Line getLineAt(int index) {
+    public Line getElementAt(int index) {
         return lContent.get(index);
     }
 

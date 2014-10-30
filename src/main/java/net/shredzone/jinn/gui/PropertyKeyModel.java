@@ -39,7 +39,7 @@ import net.shredzone.jinn.property.PropertyModel;
  *
  * @author Richard "Shred" Körber
  */
-public class PropertyKeyModel implements ListModel {
+public class PropertyKeyModel implements ListModel<String> {
     protected final PropertyModel model;
     protected final List<String> lKeys = new ArrayList<String>();
     private final ListDataListener listener = new MyListDataListener();
@@ -76,18 +76,7 @@ public class PropertyKeyModel implements ListModel {
      * @return String containing the Key at this index
      */
     @Override
-    public Object getElementAt(int index) {
-        return getKeyAt(index);
-    }
-
-    /**
-     * Get an element of this model.
-     *
-     * @param index
-     *            Index to read from
-     * @return String containing the Key at this index
-     */
-    public String getKeyAt(int index) {
+    public String getElementAt(int index) {
         return lKeys.get(index);
     }
 
@@ -207,19 +196,19 @@ public class PropertyKeyModel implements ListModel {
             int lastIx = e.getIndex1();
 
             while (firstIx < lastIx) {
-                Line l = model.getLineAt(firstIx);
+                Line l = model.getElementAt(firstIx);
                 if (l != null && l instanceof PropertyLine) break;
                 firstIx++;
             }
 
             while (firstIx < lastIx) {
-                Line l = model.getLineAt(lastIx);
+                Line l = model.getElementAt(lastIx);
                 if (l != null && l instanceof PropertyLine) break;
                 lastIx--;
             }
 
-            int start = lKeys.indexOf(model.getLineAt(firstIx));
-            int end = lKeys.indexOf(model.getLineAt(lastIx));
+            int start = lKeys.indexOf(model.getElementAt(firstIx));
+            int end = lKeys.indexOf(model.getElementAt(lastIx));
             if (start < 0) start = 0;
             if (end < 0) end = lKeys.size() - 1;
 

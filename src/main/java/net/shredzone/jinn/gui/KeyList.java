@@ -30,7 +30,7 @@ import net.shredzone.jinn.property.PropertyModel;
  *
  * @author Richard "Shred" Körber
  */
-public class KeyList extends JList {
+public class KeyList extends JList<String> {
     private static final long serialVersionUID = -5451689667472060128L;
 
     /**

@@ -65,7 +65,7 @@ public class JinnPane extends JPanel {
 
     private final Registry registry;
     private PropertyViewer pvReference;
-    private JList jlKeys;
+    private JList<String> jlKeys;
     private JTextArea jtaReference;
     private JTextArea jtaTranslation;
     private UndoManager undoManager;
@@ -112,7 +112,7 @@ public class JinnPane extends JPanel {
         final PropertyKeyModel pkm = new PropertyKeyModel(model);
         setModel(pkm);
         if (pkm.getSize() > 0) {
-            selectKey(pkm.getKeyAt(0));
+            selectKey(pkm.getElementAt(0));
         } else {
             selectKey(null);
         }
@@ -127,7 +127,7 @@ public class JinnPane extends JPanel {
     public void setReferenceModel(PropertyModel model) {
         PropertyModel editModel = (PropertyModel) registry.get(JinnRegistryKeys.MODEL_TRANSLATION);
         if (editModel != null) {
-            jlKeys.setModel(new DefaultListModel()); // Remove old model
+            jlKeys.setModel(new DefaultListModel<String>()); // Remove old model
             final Set<String> newLines = editModel.merge(model);
             final PropertyKeyRefModel pkrm = new PropertyKeyRefModel(editModel, model);
             pkrm.setAddedKeys(newLines);
@@ -367,7 +367,7 @@ public class JinnPane extends JPanel {
             final Object src = e.getSource();
 
             if (src == jlKeys) {
-                selectKey((String) jlKeys.getSelectedValue());
+                selectKey(jlKeys.getSelectedValue());
 
             } else if (src == pvReference) {
                 final Line line = (Line) pvReference.getSelectedValue();

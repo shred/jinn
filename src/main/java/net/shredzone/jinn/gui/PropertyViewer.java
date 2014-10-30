@@ -22,6 +22,7 @@ package net.shredzone.jinn.gui;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
+import net.shredzone.jinn.property.Line;
 import net.shredzone.jinn.property.PropertyModel;
 
 /**
@@ -34,7 +35,7 @@ import net.shredzone.jinn.property.PropertyModel;
  *
  * @author Richard "Shred" Körber
  */
-public class PropertyViewer extends JList {
+public class PropertyViewer extends JList<Line> {
     private static final long serialVersionUID = -3305575282409649481L;
 
     /**
