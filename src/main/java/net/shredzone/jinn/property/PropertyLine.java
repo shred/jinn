@@ -24,9 +24,8 @@ import java.io.IOException;
 /**
  * This class represents a single translation line of a properties file. It consists of a
  * String type key and a String type translation.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyLine.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class PropertyLine extends AbstractLine {
     private String key;
@@ -34,7 +33,7 @@ public class PropertyLine extends AbstractLine {
 
     /**
      * Create a new PropertyLine with the given key and value.
-     * 
+     *
      * @param key
      *            Property key
      * @param value
@@ -47,12 +46,13 @@ public class PropertyLine extends AbstractLine {
 
     /**
      * Write the internal state to a content line.
-     * 
+     *
      * @param pw
      *            PropertiesWriter to write to
      * @throws IOException
      *             Could not write to stream
      */
+    @Override
     public void write(PropertiesWriter pw) throws IOException {
         int mark = pw.writeKey(getKey());
         pw.write("= ");
@@ -62,7 +62,7 @@ public class PropertyLine extends AbstractLine {
 
     /**
      * Get the key of this entry.
-     * 
+     *
      * @return Current key.
      */
     public String getKey() {
@@ -72,7 +72,7 @@ public class PropertyLine extends AbstractLine {
 
     /**
      * Set a new value for this Resource. Note that a key is not changeable.
-     * 
+     *
      * @param val
      *            New value to be set
      */
@@ -84,7 +84,7 @@ public class PropertyLine extends AbstractLine {
 
     /**
      * Get the value that is currently set.
-     * 
+     *
      * @return Current value.
      */
     public String getValue() {

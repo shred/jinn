@@ -57,9 +57,8 @@ import net.shredzone.jinn.property.PropertyModel;
 /**
  * The main pane of Jinn. It contains a menu bar, a tool bar and all kind of lists, text
  * area and other components.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnPane.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class JinnPane extends JPanel {
     private static final long serialVersionUID = 1614457053627926890L;
@@ -74,7 +73,7 @@ public class JinnPane extends JPanel {
 
     /**
      * Create a new main Jinn pane, using the given Registry.
-     * 
+     *
      * @param registry
      *            Registry for this Jinn instance
      */
@@ -105,7 +104,7 @@ public class JinnPane extends JPanel {
 
     /**
      * Set a new PropertyModel which is the target model for translation.
-     * 
+     *
      * @param model
      *            PropertyModel with the translation
      */
@@ -121,7 +120,7 @@ public class JinnPane extends JPanel {
 
     /**
      * Set a new PropertyModel which is the reference model.
-     * 
+     *
      * @param model
      *            PropertyModel with the reference text
      */
@@ -139,7 +138,7 @@ public class JinnPane extends JPanel {
 
     /**
      * Set the PropertyKeyModel to be used.
-     * 
+     *
      * @param pkm
      *            PropertyKeyModel
      */
@@ -150,7 +149,7 @@ public class JinnPane extends JPanel {
 
     /**
      * Select a key for editing.
-     * 
+     *
      * @param key
      */
     public void selectKey(String key) {
@@ -296,7 +295,7 @@ public class JinnPane extends JPanel {
 
     /**
      * Add all the actions of this pane.
-     * 
+     *
      * @param registry
      *            Registry to be used
      * @param comp
@@ -324,7 +323,7 @@ public class JinnPane extends JPanel {
 
         /**
          * Create a new PropertyChangeListener, and register it with the registry.
-         * 
+         *
          * @param registry
          *            Registry to register with
          */
@@ -336,10 +335,11 @@ public class JinnPane extends JPanel {
 
         /**
          * A property was changed in the registry.
-         * 
+         *
          * @param evt
          *            PropertyChangeEvent giving further details
          */
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
             final String prop = evt.getPropertyName();
 
@@ -362,6 +362,7 @@ public class JinnPane extends JPanel {
      */
     private class MyListSelectionListener implements ListSelectionListener {
 
+        @Override
         public void valueChanged(ListSelectionEvent e) {
             final Object src = e.getSource();
 
@@ -408,14 +409,17 @@ public class JinnPane extends JPanel {
             }
         }
 
+        @Override
         public void insertUpdate(DocumentEvent e) {
             documentChanged(e);
         }
 
+        @Override
         public void removeUpdate(DocumentEvent e) {
             documentChanged(e);
         }
 
+        @Override
         public void changedUpdate(DocumentEvent e) {
             documentChanged(e);
         }

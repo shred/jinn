@@ -37,9 +37,8 @@ import net.shredzone.jinn.pool.ImgPool;
 
 /**
  * Jump to the next untranslated string.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: NextAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class NextAction extends BaseAction {
     private static final long serialVersionUID = 7168091727814398003L;
@@ -47,7 +46,7 @@ public class NextAction extends BaseAction {
 
     /**
      * Create a new NextAction.
-     * 
+     *
      * @param registry
      *            The application's Registry
      */
@@ -59,6 +58,7 @@ public class NextAction extends BaseAction {
         setEnabled(registry.get(JinnRegistryKeys.FILE_REFERENCE) != null);
 
         registry.addPropertyChangeListener(JinnRegistryKeys.FILE_REFERENCE, new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 setEnabled(evt.getNewValue() != null);
             }
@@ -67,7 +67,7 @@ public class NextAction extends BaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */

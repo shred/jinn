@@ -33,9 +33,8 @@ import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * Start a new set of properties.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: NewAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class NewAction extends BaseAction {
     private static final long serialVersionUID = -5321317574685533552L;
@@ -43,7 +42,7 @@ public class NewAction extends BaseAction {
 
     /**
      * Create a new NewAction.
-     * 
+     *
      * @param registry
      *            The application's Registry
      */
@@ -55,7 +54,7 @@ public class NewAction extends BaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */

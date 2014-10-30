@@ -63,9 +63,8 @@ import net.shredzone.jinn.i18n.L;
  * The name jinn consists of 'j' for Java, 'in' for i18n (the abbreviation of
  * 'internationalization') without the 18, and 'n' because 'jin' was already taken by
  * another project. ;-)
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Jinn.java 319 2009-05-13 22:11:49Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class Jinn {
     private final static Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(Jinn.class);
@@ -98,6 +97,7 @@ public class Jinn {
         // Why using invokeLater here? See:
         // http://java.sun.com/developer/JDCTechTips/2003/tt1208.html#1
         SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 frame.setVisible(true);
             }
@@ -155,9 +155,6 @@ public class Jinn {
         registry.put(JinnRegistryKeys.ACTION_ABOUT, new AboutAction(registry));
     }
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         // --- Sprache setzen ---
         Preferences prefs = Preferences.userNodeForPackage(Jinn.class);

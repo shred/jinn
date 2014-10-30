@@ -35,9 +35,8 @@ import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * Quit the application.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: QuitAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class QuitAction extends BaseAction {
     private static final long serialVersionUID = -2916484363510929249L;
@@ -46,7 +45,7 @@ public class QuitAction extends BaseAction {
 
     /**
      * Create a new QuitAction.
-     * 
+     *
      * @param registry
      *            The application's Registry
      */
@@ -59,7 +58,7 @@ public class QuitAction extends BaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */

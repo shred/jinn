@@ -27,9 +27,8 @@ import net.shredzone.jinn.i18n.L;
 
 /**
  * A FileFilter that only shows ".properties" files.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesFileFilter.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class PropertiesFileFilter extends FileFilter {
 
@@ -41,7 +40,7 @@ public class PropertiesFileFilter extends FileFilter {
     /**
      * Check if this filter accepts the given file. It will be accepted if it is either a
      * directory, or if it is a file that is visible and having a ".properties" suffix.
-     * 
+     *
      * @param f
      *            File to check
      * @return true: Accept this file
@@ -55,7 +54,7 @@ public class PropertiesFileFilter extends FileFilter {
 
     /**
      * Get a human readable description for this filter.
-     * 
+     *
      * @return Description
      */
     @Override

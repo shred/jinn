@@ -35,9 +35,8 @@ import net.shredzone.jinn.pool.ImgPool;
 
 /**
  * Clean the translation text.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: CleanAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class CleanAction extends BaseAction {
     private static final long serialVersionUID = -5001726514056771893L;
@@ -49,7 +48,7 @@ public class CleanAction extends BaseAction {
 
     /**
      * Create a new CleanAction.
-     * 
+     *
      * @param registry
      *            The application's Registry
      */
@@ -64,6 +63,7 @@ public class CleanAction extends BaseAction {
         setEnabled(registry.get(JinnRegistryKeys.MODEL_TRANSLATION) != null);
 
         registry.addPropertyChangeListener(JinnRegistryKeys.MODEL_TRANSLATION, new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 setEnabled(evt.getNewValue() != null);
             }
@@ -72,7 +72,7 @@ public class CleanAction extends BaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */

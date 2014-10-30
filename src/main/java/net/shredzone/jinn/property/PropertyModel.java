@@ -52,9 +52,8 @@ import javax.swing.event.ListDataListener;
  * This is a ListModel, so it can be immediately used in JList etc.
  * <p>
  * All methods are <em>not</em> synchronized!
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyModel.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class PropertyModel implements ListModel {
     private final PropertyChangeListener listener = new MyPropertyChangeListener();
@@ -82,7 +81,7 @@ public class PropertyModel implements ListModel {
     /**
      * Fill a model by reading a .properties file from an InputStream. The model is
      * cleared before.
-     * 
+     *
      * @param in
      *            InputStream to read the .properties file from.
      * @throws IOException
@@ -95,7 +94,7 @@ public class PropertyModel implements ListModel {
     /**
      * Fill a model by reading a .properties file from a PropertiesReader. The model is
      * cleared before.
-     * 
+     *
      * @param in
      *            PropertiesReader to read the .properties file from.
      * @throws IOException
@@ -112,7 +111,7 @@ public class PropertyModel implements ListModel {
     /**
      * Write the current content of this model to a valid .properties file by using an
      * OutputStream. The OutputStream will be flushed, but not closed.
-     * 
+     *
      * @param out
      *            OutputStream to write the properties file to
      * @throws IOException
@@ -125,7 +124,7 @@ public class PropertyModel implements ListModel {
     /**
      * Write the current content of this model to a valid .properties file by using a
      * PropertiesWriter. The PropertiesWriter will be flushed, but not closed.
-     * 
+     *
      * @param out
      *            PropertiesWriter to write the properties file to
      * @throws IOException
@@ -140,7 +139,7 @@ public class PropertyModel implements ListModel {
     /**
      * Get a List of all lines contained in this model. This list is unmodifiable, but the
      * Line objects contained in this list can be modified.
-     * 
+     *
      * @return List containing all Line objects of this model, in the original sequence
      *         they were loaded from the .properties file.
      */
@@ -152,7 +151,7 @@ public class PropertyModel implements ListModel {
      * Get a Map of all PropertyLine contained in this Resource. The Map's key will be the
      * name of the resource, the Map's value a reference to the appropriate PropertyLine
      * object. The Map is unmodifiable.
-     * 
+     *
      * @return Map containing all PropertyLine objects.
      */
     public Map<String, PropertyLine> getResourceMap() {
@@ -161,7 +160,7 @@ public class PropertyModel implements ListModel {
 
     /**
      * Get the PropertyLine for the given resource key.
-     * 
+     *
      * @param key
      *            Resource key to fetch
      * @return PropertyLine or null if the key is not known.
@@ -172,7 +171,7 @@ public class PropertyModel implements ListModel {
 
     /**
      * Add a Line to this model. The line is added to the end of the file.
-     * 
+     *
      * @param line
      *            Line to be added
      */
@@ -196,7 +195,7 @@ public class PropertyModel implements ListModel {
 
     /**
      * Remove a Line from this model. If the line was not added, nothing will happen.
-     * 
+     *
      * @param line
      *            Line to be removed
      */
@@ -219,7 +218,7 @@ public class PropertyModel implements ListModel {
 
     /**
      * Insert a Line into a certain index of this model.
-     * 
+     *
      * @param index
      *            Index position
      * @param line
@@ -263,7 +262,7 @@ public class PropertyModel implements ListModel {
      * <p>
      * Future implementations of this method may behave a little smarter and more
      * non-destructive than that.
-     * 
+     *
      * @param r
      *            PropertyModel to merge from.
      * @return A Set of resource key names that have been added by this merge operation.
@@ -353,9 +352,10 @@ public class PropertyModel implements ListModel {
     /**
      * Get the size of the list, which is equal to the number of Line objects in this
      * model.
-     * 
+     *
      * @return Number of Lines
      */
+    @Override
     public int getSize() {
         return lContent.size();
     }
@@ -363,11 +363,12 @@ public class PropertyModel implements ListModel {
     /**
      * Get the Line element of a certain index. This method satisfies the ListModel
      * interface. Use {@link #getLineAt(int)} instead.
-     * 
+     *
      * @param index
      *            Line number
      * @return Line object of that line
      */
+    @Override
     public Object getElementAt(int index) {
         return getLineAt(index);
     }
@@ -376,7 +377,7 @@ public class PropertyModel implements ListModel {
      * Get the Line element of a certain index. The returned object is guaranteed to be an
      * instance of Line. The Object type is just required to satisfy the ListModel
      * interface.
-     * 
+     *
      * @param index
      *            Line number
      * @return Line object of that line
@@ -388,10 +389,11 @@ public class PropertyModel implements ListModel {
     /**
      * Add a ListDataListener which is notified if the content of this PropertyModel
      * changed.
-     * 
+     *
      * @param l
      *            ListDataListener to be added
      */
+    @Override
     public void addListDataListener(ListDataListener l) {
         // --- Check if the Listener is already added ---
         for (WeakReference<ListDataListener> wr : sListener) {
@@ -406,10 +408,11 @@ public class PropertyModel implements ListModel {
 
     /**
      * Remove a ListDataListener. If it was not added, nothing will happen.
-     * 
+     *
      * @param l
      *            ListDataListener to be removed
      */
+    @Override
     public void removeListDataListener(ListDataListener l) {
         for (Iterator<WeakReference<ListDataListener>> it = sListener.iterator(); it.hasNext();) {
             final WeakReference<ListDataListener> wr = it.next();
@@ -422,7 +425,7 @@ public class PropertyModel implements ListModel {
 
     /**
      * Notify that Lines within a range were changed.
-     * 
+     *
      * @param start
      *            Start line number
      * @param end
@@ -443,7 +446,7 @@ public class PropertyModel implements ListModel {
 
     /**
      * Notify that Lines within a range were added or inserted.
-     * 
+     *
      * @param start
      *            Start line number
      * @param end
@@ -464,7 +467,7 @@ public class PropertyModel implements ListModel {
 
     /**
      * Notify that Lines within a range were removed.
-     * 
+     *
      * @param start
      *            Start line number
      * @param end
@@ -493,10 +496,11 @@ public class PropertyModel implements ListModel {
 
         /**
          * A Line changed its content. Notify our Listeners about that change.
-         * 
+         *
          * @param evt
          *            PropertyChangeEvent
          */
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
             // --- Find out the Line Index ---
             // The Source of the event is the Line object that was changed.

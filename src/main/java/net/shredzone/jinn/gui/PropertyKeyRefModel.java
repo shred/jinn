@@ -28,9 +28,8 @@ import net.shredzone.jinn.property.PropertyModel;
  * A PropertyKeyRefModel extends the PropertyModel by the ability to compare the
  * PropertyModel with a reference PropertyModel. There are a few checks that can be made
  * in order to compare this model with the reference model.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyKeyRefModel.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class PropertyKeyRefModel extends PropertyKeyModel {
     protected final PropertyModel reference;
@@ -39,7 +38,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
     /**
      * Create a new PropertyKeyModel for a given PropertyModel and a reference
      * PropertyModel.
-     * 
+     *
      * @param model
      *            PropertyModel to create this model for
      * @param ref
@@ -53,7 +52,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
     /**
      * Set a Set of keys that have been added by a merge process. Actually you pass the
      * result of the <code>PropertyModel.merge()</code> method.
-     * 
+     *
      * @param keys
      *            Set of added keys
      */
@@ -65,7 +64,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
      * Find the next untranslated key. The search is started from the given key
      * (exclusive). If key is set to null, the search will start at the top. If no next
      * untranslated key was found, null will be returned.
-     * 
+     *
      * @param key
      *            Starting key, null for first line
      * @return Next untranslated key, null for no next key.
@@ -96,7 +95,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
      * Check if a key's resource value is empty.
      * <p>
      * This check is true if the key exists, but contains an empty string as value.
-     * 
+     *
      * @param key
      *            Key to check
      * @return true: key exists, but value is an empty string
@@ -112,7 +111,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
      * <p>
      * This check is true if the key exists in both this model and the reference model,
      * but the values are not equal. This means that the resource was already translated.
-     * 
+     *
      * @param key
      *            Key to check
      * @return true: key exists, and values are not equal
@@ -131,7 +130,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
      * This check is true if a set of added keys was passed in (using
      * <code>setAddedKeys()</code>), and the set contains the key. This means that the key
      * was added since last time the reference model was merged.
-     * 
+     *
      * @param key
      *            Key to check
      * @return true: the key is new, according to the set of added keys.
@@ -148,7 +147,7 @@ public class PropertyKeyRefModel extends PropertyKeyModel {
      * model. This means that the key was probably removed since last time the reference
      * model was merged. Anyhow the merging process should have removed those keys from
      * this model already, so usually this test should always result false.
-     * 
+     *
      * @param key
      *            Key to check
      * @return true: the key is surplus

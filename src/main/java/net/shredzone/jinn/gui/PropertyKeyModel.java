@@ -36,9 +36,8 @@ import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * A PropertyKeyModel is a view for the keys of a PropertyModel.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyKeyModel.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class PropertyKeyModel implements ListModel {
     protected final PropertyModel model;
@@ -48,7 +47,7 @@ public class PropertyKeyModel implements ListModel {
 
     /**
      * Create a new PropertyKeyModel for a given PropertyModel.
-     * 
+     *
      * @param model
      *            PropertyModel to create this model for
      */
@@ -60,9 +59,10 @@ public class PropertyKeyModel implements ListModel {
 
     /**
      * Get the size of this model, i.e. the number of elements.
-     * 
+     *
      * @return Size of this model
      */
+    @Override
     public int getSize() {
         return lKeys.size();
     }
@@ -70,18 +70,19 @@ public class PropertyKeyModel implements ListModel {
     /**
      * Get an element of this model. This is only for the ListModel. Use
      * {@link #getKeyAt(int)} instead.
-     * 
+     *
      * @param index
      *            Index to read from
      * @return String containing the Key at this index
      */
+    @Override
     public Object getElementAt(int index) {
         return getKeyAt(index);
     }
 
     /**
      * Get an element of this model.
-     * 
+     *
      * @param index
      *            Index to read from
      * @return String containing the Key at this index
@@ -92,7 +93,7 @@ public class PropertyKeyModel implements ListModel {
 
     /**
      * Check if a key is known to this model.
-     * 
+     *
      * @param key
      *            Key to be checked
      * @return true: key is known, false: key is unknown.
@@ -103,7 +104,7 @@ public class PropertyKeyModel implements ListModel {
 
     /**
      * Find a key and return its position.
-     * 
+     *
      * @param key
      *            Key to be found
      * @return Index of this key, or -1 if the key was not found
@@ -114,10 +115,11 @@ public class PropertyKeyModel implements ListModel {
 
     /**
      * Add a ListDataListener which is notified when this model changes.
-     * 
+     *
      * @param l
      *            ListDataListener to be added.
      */
+    @Override
     public void addListDataListener(ListDataListener l) {
         // --- Check if the Listener is already added ---
         for (WeakReference<ListDataListener> wr : sListener) {
@@ -132,10 +134,11 @@ public class PropertyKeyModel implements ListModel {
 
     /**
      * Remove a ListDataListener. If it was not added, nothing will happen.
-     * 
+     *
      * @param l
      *            ListDataListener to be removed.
      */
+    @Override
     public void removeListDataListener(ListDataListener l) {
         for (Iterator<WeakReference<ListDataListener>> it = sListener.iterator(); it.hasNext();) {
             WeakReference<ListDataListener> wr = it.next();
@@ -148,7 +151,7 @@ public class PropertyKeyModel implements ListModel {
 
     /**
      * Update all keys of the internal key list.
-     * 
+     *
      * @param e
      *            ListDataEvent of the PropertyModel event. null will always update the
      *            entire list.
@@ -183,14 +186,17 @@ public class PropertyKeyModel implements ListModel {
     }
 
     private class MyListDataListener implements ListDataListener {
+        @Override
         public void intervalAdded(ListDataEvent e) {
             updateKeys(e);
         }
 
+        @Override
         public void intervalRemoved(ListDataEvent e) {
             updateKeys(e);
         }
 
+        @Override
         public void contentsChanged(ListDataEvent e) {
             // We assume that:
             // 1) a key name never changes once it is added

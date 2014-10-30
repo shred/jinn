@@ -27,9 +27,8 @@ import net.shredzone.jinn.property.PropertyModel;
 /**
  * A KeyList is a JList that shows the keys of either a PropertyKeyModel or a
  * PropertyKeyRefModel.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: KeyList.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class KeyList extends JList {
     private static final long serialVersionUID = -5451689667472060128L;
@@ -43,7 +42,7 @@ public class KeyList extends JList {
 
     /**
      * Create a PropertyViewer for a given PropertyKeyModel.
-     * 
+     *
      * @param model
      *            PropertyKeyModel to show.
      */

@@ -21,9 +21,8 @@ package net.shredzone.jinn;
 
 /**
  * This interface documents the keys available in Jinn's Registry.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnRegistryKeys.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public interface JinnRegistryKeys {
 

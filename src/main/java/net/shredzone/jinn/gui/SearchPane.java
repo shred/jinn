@@ -37,9 +37,8 @@ import net.shredzone.jshred.swing.JLabelGroup;
 /**
  * A search pane provides input fields for a search dialog. A static method
  * <code>showSearchPane()</code> will open an appropriate modal search dialog.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SearchPane.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class SearchPane extends JPanel {
     private static final long serialVersionUID = 9034069296224720962L;
@@ -56,7 +55,7 @@ public class SearchPane extends JPanel {
 
     /**
      * Create a new main Jinn pane, using the given Registry.
-     * 
+     *
      * @param registry
      *            Registry for this Jinn instance
      */
@@ -72,7 +71,7 @@ public class SearchPane extends JPanel {
 
     /**
      * Set the search term, which is the string to be searched for.
-     * 
+     *
      * @param term
      *            Search term
      */
@@ -82,7 +81,7 @@ public class SearchPane extends JPanel {
 
     /**
      * Get the search term currently entered in the text field.
-     * 
+     *
      * @return Search term
      */
     public String getSearchTerm() {
@@ -91,7 +90,7 @@ public class SearchPane extends JPanel {
 
     /**
      * Set the replacement string.
-     * 
+     *
      * @param replace
      *            Replacement
      */
@@ -101,7 +100,7 @@ public class SearchPane extends JPanel {
 
     /**
      * Get the replacement string currently entered in the text field.
-     * 
+     *
      * @return Replacement
      */
     public String getReplacement() {
@@ -110,7 +109,7 @@ public class SearchPane extends JPanel {
 
     /**
      * Set the search mode. If true is provided, the searching will be case sensitive.
-     * 
+     *
      * @param cs
      *            true: case sensitive search, false: case insensitive
      */
@@ -121,7 +120,7 @@ public class SearchPane extends JPanel {
     /**
      * Get the currently set search mode. If true is returned, the searching will be case
      * sensitive.
-     * 
+     *
      * @return true: case sensitive search, false: case insensitive
      */
     public boolean isCaseSensitive() {
@@ -171,7 +170,7 @@ public class SearchPane extends JPanel {
 
     /**
      * Show the search dialog.
-     * 
+     *
      * @param registry
      *            Registry to be used
      * @param parent
@@ -207,7 +206,7 @@ public class SearchPane extends JPanel {
 
         /**
          * Create a new PropertyChangeListener, and register it with the registry.
-         * 
+         *
          * @param registry
          *            Registry to register with
          */
@@ -219,10 +218,11 @@ public class SearchPane extends JPanel {
 
         /**
          * A property was changed in the registry.
-         * 
+         *
          * @param evt
          *            PropertyChangeEvent giving further details
          */
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
             final String prop = evt.getPropertyName();
 

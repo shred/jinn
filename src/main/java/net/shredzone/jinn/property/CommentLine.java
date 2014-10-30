@@ -23,16 +23,15 @@ import java.io.IOException;
 
 /**
  * This class represents a single comment line of a properties file.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: CommentLine.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class CommentLine extends AbstractLine {
     private String comment;
 
     /**
      * Create a new CommentLine with the given comment.
-     * 
+     *
      * @param line
      *            The comment of this line, without line feeding.
      */
@@ -42,12 +41,13 @@ public class CommentLine extends AbstractLine {
 
     /**
      * Write the internal state to a content line.
-     * 
+     *
      * @param pw
      *            PropertiesWriter to write to
      * @throws IOException
      *             Could not write to stream
      */
+    @Override
     public void write(PropertiesWriter pw) throws IOException {
         pw.writeEscaped(comment);
         pw.newLine();
@@ -56,7 +56,7 @@ public class CommentLine extends AbstractLine {
     /**
      * Set a new comment for this line. This is always a single line, without any line end
      * markers, and always starting with a hash '#' character.
-     * 
+     *
      * @param cmt
      *            New comment to be set.
      */
@@ -72,7 +72,7 @@ public class CommentLine extends AbstractLine {
     /**
      * Return the comment stored in this line. This is always a single comment line,
      * without the line end marker.
-     * 
+     *
      * @return Comment
      */
     public String getComment() {

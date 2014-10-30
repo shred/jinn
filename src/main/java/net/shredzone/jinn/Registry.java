@@ -32,9 +32,8 @@ import java.util.Map;
  * Basically it is just a Map with a possibility to listen to changes of certain keys.
  * <p>
  * This class is threadsafe.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Registry.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class Registry {
     private final Map<String, Object> mData = new HashMap<String, Object>();
@@ -45,7 +44,7 @@ public class Registry {
      * notified. The new value may be null.
      * <p>
      * If val is equal to the current value, or if both are null, nothing will happen.
-     * 
+     *
      * @param key
      *            Registry key to change
      * @param val
@@ -69,7 +68,7 @@ public class Registry {
      * Get the value for a registry key. If the value was not previously set, null will be
      * returned. Note that null will also be returned if the value was set to null before.
      * This means that there is no way to find out if a key was previously set.
-     * 
+     *
      * @param key
      *            Registry key to read
      * @return Current value, may be null.
@@ -85,7 +84,7 @@ public class Registry {
     /**
      * Get a registry value, as key. This is just a convenience method. The value's
      * <code>toString()</code> result will be returned.
-     * 
+     *
      * @param key
      *            Registry key to read
      * @return Current value as String, may be null.
@@ -99,7 +98,7 @@ public class Registry {
      * Checks a boolean state of a registry key. The key must contain a Boolean object,
      * otherwise a ClassCastException is thrown. If the key is not set, false will be
      * returned.
-     * 
+     *
      * @param key
      *            Registry key to read
      * @return State of that key.
@@ -113,7 +112,7 @@ public class Registry {
 
     /**
      * Add a PropertyChangeListener. It will be notified for all key changes.
-     * 
+     *
      * @param l
      *            PropertyChangeListener to add
      */
@@ -124,7 +123,7 @@ public class Registry {
     /**
      * Add a PropertyChangeListener. It will be notified for changes to the given key
      * only.
-     * 
+     *
      * @param key
      *            Key to listen for
      * @param l
@@ -139,7 +138,7 @@ public class Registry {
     /**
      * Remove a PropertyChangeListener for all keys. If it was not added, nothing will
      * happen.
-     * 
+     *
      * @param l
      *            PropertyChangeListener to be removed
      */
@@ -150,7 +149,7 @@ public class Registry {
     /**
      * Remove a PropertyChangeListener for the given key. If it was not added, nothing
      * will happen.
-     * 
+     *
      * @param key
      *            Key the listener was bound to
      * @param l

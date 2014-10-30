@@ -25,9 +25,8 @@ import java.util.ResourceBundle;
 /**
  * Offers internationalisation (i18n). It's a simple call of
  * <code>String text = L.tr("key");</code>.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: L.java 319 2009-05-13 22:11:49Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class L {
     private static final ResourceBundle resource;
@@ -39,7 +38,7 @@ public class L {
     /**
      * Translates a key into the matching translation. If a translation string is missing,
      * the key is returned enclosed into double square brackets.
-     * 
+     *
      * @param key
      *            Key to be translated
      * @return Translated String

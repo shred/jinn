@@ -24,15 +24,14 @@ import java.io.IOException;
 
 /**
  * This interface represents a single line of a properties file.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Line.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public interface Line extends Cloneable {
 
     /**
      * Write the internal state to a content line.
-     * 
+     *
      * @param pw
      *            PropertiesWriter to write to
      * @throws IOException
@@ -42,7 +41,7 @@ public interface Line extends Cloneable {
 
     /**
      * A clone operation is a must-have for lines.
-     * 
+     *
      * @return A cloned Line object that can be modified independently of the original.
      */
     public Object clone();
@@ -50,7 +49,7 @@ public interface Line extends Cloneable {
     /**
      * Add a PropertyChangeListener which is informed when the content of this Line was
      * changed.
-     * 
+     *
      * @param l
      *            PropertyChangeListener to add
      */
@@ -58,7 +57,7 @@ public interface Line extends Cloneable {
 
     /**
      * Remove a PropertyChangeListener. If it was not added, nothing will happen.
-     * 
+     *
      * @param l
      *            PropertyChangeListener to remove
      */

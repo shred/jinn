@@ -35,9 +35,8 @@ import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * The common superclass for all search operation actions.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: BaseSearchAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public abstract class BaseSearchAction extends BaseAction {
     private static final long serialVersionUID = -1766114067062536829L;
@@ -45,7 +44,7 @@ public abstract class BaseSearchAction extends BaseAction {
 
     /**
      * Create a new BaseSearchAction.
-     * 
+     *
      * @param registry
      *            Registry to be used
      * @param name
@@ -64,7 +63,7 @@ public abstract class BaseSearchAction extends BaseAction {
 
     /**
      * Get the search term to look for.
-     * 
+     *
      * @return Search term
      */
     protected String getSearchTerm() {
@@ -73,7 +72,7 @@ public abstract class BaseSearchAction extends BaseAction {
 
     /**
      * Check if the search shall be case sensitive.
-     * 
+     *
      * @return true: case sensitive, false: ignore case
      */
     protected boolean isCaseSensitive() {
@@ -83,7 +82,7 @@ public abstract class BaseSearchAction extends BaseAction {
 
     /**
      * Show a message that there is no search result.
-     * 
+     *
      * @param frm
      *            Parent frame that is to be blocked.
      */
@@ -100,7 +99,7 @@ public abstract class BaseSearchAction extends BaseAction {
      * there is no next resorce, false will be returned.
      * <p>
      * After a match was found, the resource will be chosen and the word will be selected.
-     * 
+     *
      * @return true: Match was found, false: No match
      */
     protected boolean searchNext() {
@@ -120,7 +119,7 @@ public abstract class BaseSearchAction extends BaseAction {
      * Search for the next resource that contains the search term. The search is started
      * from the currently selected resource, which will be completely ignored. If no
      * resource is selected, it will start at the first resource.
-     * 
+     *
      * @return true: found a resource, false: found nothing.
      */
     private boolean searchResource() {
@@ -161,7 +160,7 @@ public abstract class BaseSearchAction extends BaseAction {
     /**
      * Search for the next search term match in the current document. The search is
      * started from the caret position.
-     * 
+     *
      * @return true: found a match, false: found nothing.
      */
     private boolean searchDocument() {

@@ -21,9 +21,8 @@ package net.shredzone.jinn;
 
 /**
  * This interface is some kind of stylesheet with global constants.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: Style.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public interface Style {
 

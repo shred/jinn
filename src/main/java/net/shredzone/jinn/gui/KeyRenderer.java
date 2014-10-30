@@ -32,9 +32,8 @@ import net.shredzone.jinn.pool.ImgPool;
 
 /**
  * A KeyRenderer renders a Key line shown in a JList.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: KeyRenderer.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class KeyRenderer extends DefaultListCellRenderer {
     private static final long serialVersionUID = -1559580545428262000L;
@@ -49,7 +48,7 @@ public class KeyRenderer extends DefaultListCellRenderer {
 
     /**
      * Get a Component that draws the current line.
-     * 
+     *
      * @param list
      *            Referred JList
      * @param value

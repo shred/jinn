@@ -28,9 +28,8 @@ import java.io.Reader;
  * <p>
  * While reading, unicode escape sequences will be decoded, and extended lines (using a
  * backslash at the end of a line) will be joined into a single line.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesReader.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class PropertiesReader extends Reader {
     private final InputStream in;
@@ -41,7 +40,7 @@ public class PropertiesReader extends Reader {
 
     /**
      * Create a new PropertiesReader for the given InputStream
-     * 
+     *
      * @param in
      *            InputStream to be used
      */
@@ -62,7 +61,7 @@ public class PropertiesReader extends Reader {
 
     /**
      * Stage 0: A simple read/unread mechanism.
-     * 
+     *
      * @return A single character, or -1 if EOF was found.
      * @throws IOException
      *             if it did not read.
@@ -77,7 +76,7 @@ public class PropertiesReader extends Reader {
 
     /**
      * Stage 0: Unread a single character.
-     * 
+     *
      * @param ch
      *            Character to unread
      * @throws IOException
@@ -94,7 +93,7 @@ public class PropertiesReader extends Reader {
     /**
      * Stage 1: Read a single character from the raw input stream. Convert all CRLF and CR
      * to LF.
-     * 
+     *
      * @return A single character, or -1 if EOF was found.
      * @throws IOException
      *             if it did not read.
@@ -118,7 +117,7 @@ public class PropertiesReader extends Reader {
 
     /**
      * Stage 1: Unread a single character.
-     * 
+     *
      * @param ch
      *            Character to unread
      * @throws IOException
@@ -135,7 +134,7 @@ public class PropertiesReader extends Reader {
     /**
      * Stage 2: Read a single character from stage 1. If it is a backslash followed by a
      * LF, ignore those characters and all subsequent whitespaces.
-     * 
+     *
      * @return A single character, or -1 if EOF was found.
      * @throws IOException
      *             if it did not read.
@@ -173,7 +172,7 @@ public class PropertiesReader extends Reader {
      * <li>Wrapped lines (with backslash at the end) are unwrapped and subsequent white
      * spaces are stripped. The resulting stream will have virtually no line wraps.
      * </ul>
-     * 
+     *
      * @return Character read, or -1 if EOF was reached
      * @throws IOException
      *             if it could not read
@@ -190,7 +189,7 @@ public class PropertiesReader extends Reader {
              * might get a properties file with a non-conformous encoding. With this
              * little hack you are able to read it into Jinn and then save it in a
              * conformous fashion. Maybe I will later add an action for it...
-             * 
+             *
              * String charset = "ISO-8859-2";
              * int ch = readUnwrapped();
              * if( ch<0 ) return ch;
@@ -204,7 +203,7 @@ public class PropertiesReader extends Reader {
 
     /**
      * Read into an array.
-     * 
+     *
      * @param cbuf
      *            Array to be filled
      * @param off
@@ -231,7 +230,7 @@ public class PropertiesReader extends Reader {
 
     /**
      * Close the PropertiesReader.
-     * 
+     *
      * @throws IOException
      *             if it could not close.
      */
@@ -250,7 +249,7 @@ public class PropertiesReader extends Reader {
     /**
      * Read a line from the properties file, as String. The String will not include the
      * line termination. Leading whitespace is automatically trimmed.
-     * 
+     *
      * @return A line from the properties file, or null if EOF was reached.
      * @throws IOException
      *             if it could not read.
@@ -279,7 +278,7 @@ public class PropertiesReader extends Reader {
     /**
      * Read a line from the resource stream, and return a Line object that contains the
      * content of the line.
-     * 
+     *
      * @return An already decoded Line object, or null if EOF was reached.
      * @throws IOException
      *             if it could not read.
@@ -360,7 +359,7 @@ public class PropertiesReader extends Reader {
      * Unescape a String. Unicode escapes and other escaped characters (namely '&#92;t',
      * '&#92;r', '&#92;n', '&#92;f') are converted. For other backslash escapes, the
      * backslash is swallowed, according to java.util.Properties javadoc.
-     * 
+     *
      * @param str
      *            String to be converted
      * @return Unescaped String

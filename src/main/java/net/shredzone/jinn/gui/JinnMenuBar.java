@@ -40,9 +40,8 @@ import net.shredzone.jshred.swing.SwingUtils;
 
 /**
  * This is the MenuBar of Jinn.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnMenuBar.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class JinnMenuBar extends JMenuBar {
     private static final long serialVersionUID = 302069297128892725L;
@@ -132,7 +131,7 @@ public class JinnMenuBar extends JMenuBar {
 
     /**
      * Create a menu Action for a registry Action key.
-     * 
+     *
      * @param key
      *            ACTION key to be used
      * @return Created MenuActionProxy
@@ -143,6 +142,7 @@ public class JinnMenuBar extends JMenuBar {
 
     private class LanguageActionListener implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             Preferences prefs = Preferences.userNodeForPackage(Jinn.class);
 

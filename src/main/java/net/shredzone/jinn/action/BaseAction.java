@@ -38,9 +38,8 @@ import net.shredzone.jshred.swing.SwingUtils;
  * The <code>perform()</code> method is usually executed in the AWT dispatch thread. You
  * may manipulate Swing objects immediately, but changes are reflected only after the
  * <code>perform()</code> method exits.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: BaseAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public abstract class BaseAction extends AbstractAction {
     private static final long serialVersionUID = -8894889050966762864L;
@@ -48,7 +47,7 @@ public abstract class BaseAction extends AbstractAction {
     /**
      * Create a new, synchronous Action. Event processing will be stopped during
      * execution, which also means that there is no GUI update.
-     * 
+     *
      * @param name
      *            Action Name
      * @param icon
@@ -67,10 +66,11 @@ public abstract class BaseAction extends AbstractAction {
 
     /**
      * The action has been invoked from a button, menu item etc.
-     * 
+     *
      * @param e
      *            ActionEvent
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         perform(e);
     }
@@ -81,7 +81,7 @@ public abstract class BaseAction extends AbstractAction {
      * This method is usually performed within the AWT dispatch thread, so you can
      * manipulate Swing objects directly, but changes won't be painted while this method
      * executes.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */
@@ -98,7 +98,7 @@ public abstract class BaseAction extends AbstractAction {
     /**
      * Get the owner Frame of the ActionEvent's source object. If there is no ActionEvent,
      * or if the source was not a Component, null will be returned.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null
      * @return Frame or null if no Frame could be evaluated

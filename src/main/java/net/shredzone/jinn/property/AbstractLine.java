@@ -24,9 +24,8 @@ import java.beans.PropertyChangeSupport;
 
 /**
  * This is an abstract implementation of the Line interface.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: AbstractLine.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public abstract class AbstractLine implements Line {
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -34,7 +33,7 @@ public abstract class AbstractLine implements Line {
     /**
      * Clone a Line. The clone returned is independent from the original. The default
      * implementation will only create a shallow copy, which is usually sufficient.
-     * 
+     *
      * @return a cloned Line
      */
     @Override
@@ -51,27 +50,29 @@ public abstract class AbstractLine implements Line {
     /**
      * Add a PropertyChangeListener which is informed when the content of this Line was
      * changed.
-     * 
+     *
      * @param l
      *            PropertyChangeListener to add
      */
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener l) {
         support.addPropertyChangeListener(l);
     }
 
     /**
      * Remove a PropertyChangeListener. If it was not added, nothing will happen.
-     * 
+     *
      * @param l
      *            PropertyChangeListener to remove
      */
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener l) {
         support.removePropertyChangeListener(l);
     }
 
     /**
      * Fire a PropertyChangeEvent.
-     * 
+     *
      * @param key
      *            Key that was changed
      * @param old

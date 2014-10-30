@@ -30,9 +30,8 @@ import net.shredzone.jinn.pool.ImgPool;
 
 /**
  * Find the next or previous occurance of a search string.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SearchNextAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class SearchNextAction extends BaseSearchAction {
     private static final long serialVersionUID = -3246883749259834931L;
@@ -56,7 +55,7 @@ public class SearchNextAction extends BaseSearchAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */

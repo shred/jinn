@@ -44,9 +44,8 @@ import net.shredzone.jinn.property.PropertyModel;
  * <p>
  * Comment lines will be shown in a different color than Property lines. Selection will be
  * honored, but rendering a focussed line is not yet implemented.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: LineRenderer.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class LineRenderer extends JComponent implements ListCellRenderer {
     private static final long serialVersionUID = 4235299926570675081L;
@@ -65,7 +64,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
      * Get the Component that draws the list cell.
      * <p>
      * Note: cell focus is currently ignored. This may change in a later version!
-     * 
+     *
      * @param list
      *            JList referred to
      * @param value
@@ -78,6 +77,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
      *            true: the row is focussed
      * @return Component that renders the cell. Usually this.
      */
+    @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         // --- Remember the Parameters ---
         currentLine = new WeakReference<Line>((Line) value); // We just need it for
@@ -166,7 +166,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
     /**
      * Split a string into its lines. The returned String array contains an entry for each
      * line, without the line terminator. Empty lines result in an empty string.
-     * 
+     *
      * @param str
      *            String to split
      * @return Array of String with an entry for each line
@@ -178,7 +178,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
 
     /**
      * Compute the maximum width of the keys of a PropertyModel.
-     * 
+     *
      * @param model
      *            PropertyModel to look at
      * @param fm
@@ -196,7 +196,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
 
     /**
      * Compute the maximum width of an array of lines.
-     * 
+     *
      * @param lines
      *            Array of Strings, one for each line
      * @param fm
@@ -215,7 +215,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
      * Draw an array of lines, from top to bottom. The y position will always be
      * <code>0 + fm.getMaxAscent()</code>, i.e. the first line will be aligned to y=0 and
      * will never draw above it.
-     * 
+     *
      * @param g2d
      *            Graphics context to use.
      * @param fm
@@ -237,7 +237,7 @@ public class LineRenderer extends JComponent implements ListCellRenderer {
 
     /**
      * Paint the component.
-     * 
+     *
      * @param g
      *            Graphics context.
      */

@@ -23,9 +23,8 @@ import java.io.IOException;
 
 /**
  * This class represents a single empty line of a properties file.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: EmptyLine.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class EmptyLine extends AbstractLine {
 
@@ -36,12 +35,13 @@ public class EmptyLine extends AbstractLine {
 
     /**
      * Write the internal state to a content line.
-     * 
+     *
      * @param pw
      *            PropertiesWriter to write to
      * @throws IOException
      *             Could not write to stream
      */
+    @Override
     public void write(PropertiesWriter pw) throws IOException {
         pw.newLine();
     }

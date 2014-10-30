@@ -31,9 +31,8 @@ import net.shredzone.jshred.swing.JToolbarButton;
 
 /**
  * This is Jinn's ToolBar.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: JinnToolBar.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class JinnToolBar extends JToolBar {
     private static final long serialVersionUID = -5415692905814260570L;
@@ -68,7 +67,7 @@ public class JinnToolBar extends JToolBar {
 
     /**
      * Create a JButton for a registry Action key, that is suitable for JToolBar usage.
-     * 
+     *
      * @param key
      *            Action key to be used
      * @return Generated JButton

@@ -40,9 +40,8 @@ import net.shredzone.jinn.pool.ImgPool;
 /**
  * This is the base class for JTextComponent related actions. There are also inner
  * subclasses for the standard actions: cut, copy, paste, undo, redo.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: TextComponentAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public abstract class TextComponentAction extends BaseAction implements DocumentListener, UndoableEditListener, CaretListener {
     private static final long serialVersionUID = -8651443172426392912L;
@@ -50,7 +49,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
     /**
      * Create a new JTextComponent Action.
-     * 
+     *
      * @param comp
      *            JTextComponent this action refers to
      * @param name
@@ -75,7 +74,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
     /**
      * Helper method, returns true when a text is selected. A text is selected when the
      * selection start and the selection end is different.
-     * 
+     *
      * @return true: text is selected
      */
     protected boolean isSelected() {
@@ -103,50 +102,55 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
     /**
      * DocumentListener implementation, do not use.
-     * 
+     *
      * @param e
      *            DocumentEvent
      */
+    @Override
     public void insertUpdate(DocumentEvent e) {
         updateState();
     }
 
     /**
      * DocumentListener implementation, do not use.
-     * 
+     *
      * @param e
      *            DocumentEvent
      */
+    @Override
     public void removeUpdate(DocumentEvent e) {
         updateState();
     }
 
     /**
      * DocumentListener implementation, do not use.
-     * 
+     *
      * @param e
      *            DocumentEvent
      */
+    @Override
     public void changedUpdate(DocumentEvent e) {
         updateState();
     }
 
     /**
      * UndoableEditListener implementation, do not use.
-     * 
+     *
      * @param e
      *            UndoableEditEvent
      */
+    @Override
     public void undoableEditHappened(UndoableEditEvent e) {
         updateState();
     }
 
     /**
      * CaretListener implementation, do not use.
-     * 
+     *
      * @param e
      *            CaretEvent
      */
+    @Override
     public void caretUpdate(CaretEvent e) {
         updateState();
     }
@@ -159,7 +163,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Create a new CutTextAction.
-         * 
+         *
          * @param comp
          *            JTextComponent this action refers to
          */
@@ -179,7 +183,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Perform the operation.
-         * 
+         *
          * @param e
          *            ActionEvent
          */
@@ -197,7 +201,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Create a new CopyTextAction.
-         * 
+         *
          * @param comp
          *            JTextComponent this action refers to
          */
@@ -217,7 +221,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Perform the operation.
-         * 
+         *
          * @param e
          *            ActionEvent
          */
@@ -235,7 +239,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Create a new PasteTextAction.
-         * 
+         *
          * @param comp
          *            JTextComponent this action refers to
          */
@@ -254,7 +258,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Perform the operation.
-         * 
+         *
          * @param e
          *            ActionEvent
          */
@@ -273,7 +277,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Create a new UndoTextAction.
-         * 
+         *
          * @param comp
          *            JTextComponent this action refers to
          * @param undo
@@ -296,7 +300,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Perform the operation.
-         * 
+         *
          * @param e
          *            ActionEvent
          */
@@ -321,7 +325,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Create a new RedoTextAction.
-         * 
+         *
          * @param comp
          *            JTextComponent this action refers to
          * @param undo
@@ -344,7 +348,7 @@ public abstract class TextComponentAction extends BaseAction implements Document
 
         /**
          * Perform the operation.
-         * 
+         *
          * @param e
          *            ActionEvent
          */

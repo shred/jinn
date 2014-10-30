@@ -35,9 +35,8 @@ import net.shredzone.jinn.pool.ImgPool;
 
 /**
  * Go to a key.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: GotoAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class GotoAction extends BaseAction {
     private static final long serialVersionUID = -6185052702783447904L;
@@ -53,6 +52,7 @@ public class GotoAction extends BaseAction {
         setEnabled(registry.get(JinnRegistryKeys.MODEL_TRANSLATION) != null);
 
         registry.addPropertyChangeListener(JinnRegistryKeys.MODEL_TRANSLATION, new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 setEnabled(evt.getNewValue() != null);
             }
@@ -61,7 +61,7 @@ public class GotoAction extends BaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */

@@ -32,9 +32,8 @@ import javax.swing.ImageIcon;
  * The ImgPool implements a weak caching mechanism. If you need several instances of the
  * same image, you can just call <code>get()</code> multiple times and always get the same
  * instance. The image is internally cached until the last reference has been discarded.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: ImgPool.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public final class ImgPool {
 
@@ -43,7 +42,7 @@ public final class ImgPool {
 
     /**
      * Get an ImageIcon by its name.
-     * 
+     *
      * @param name
      *            Image name
      * @return ImageIcon or null if not found
@@ -66,7 +65,7 @@ public final class ImgPool {
     /**
      * Get an ImageIcon by its name, and scales it to the given dimensions. Note that
      * scaled images will <em>not</em> be cached.
-     * 
+     *
      * @param name
      *            Image name
      * @param width

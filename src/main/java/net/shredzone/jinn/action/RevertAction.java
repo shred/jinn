@@ -38,9 +38,8 @@ import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * Revert to the reference text.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: RevertAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class RevertAction extends BaseAction {
     private static final long serialVersionUID = 7145249004953005243L;
@@ -51,7 +50,7 @@ public class RevertAction extends BaseAction {
 
     /**
      * Create a new RevertAction.
-     * 
+     *
      * @param registry
      *            The application's Registry
      */
@@ -66,6 +65,7 @@ public class RevertAction extends BaseAction {
         setEnabled(registry.get(JinnRegistryKeys.FILE_REFERENCE) != null);
 
         registry.addPropertyChangeListener(JinnRegistryKeys.FILE_REFERENCE, new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 setEnabled(evt.getNewValue() != null);
             }
@@ -74,7 +74,7 @@ public class RevertAction extends BaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */

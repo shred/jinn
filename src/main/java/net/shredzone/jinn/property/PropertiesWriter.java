@@ -27,9 +27,8 @@ import java.util.Arrays;
 /**
  * This Writer writes a properties file and converts it into a uniform stream. Unicode
  * characters will be escaped. Too long lines will be wrapped properly.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertiesWriter.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class PropertiesWriter extends Writer {
     private final static char[] HEX = new char[] {
@@ -44,7 +43,7 @@ public class PropertiesWriter extends Writer {
 
     /**
      * Create a new PropertiesWriter for the given OutputStream.
-     * 
+     *
      * @param out
      *            OutputStream to be used
      */
@@ -55,7 +54,7 @@ public class PropertiesWriter extends Writer {
     /**
      * Change the line separator. By default, the operating system's line separator will
      * be used.
-     * 
+     *
      * @param sep
      *            Line separator to be used
      */
@@ -68,7 +67,7 @@ public class PropertiesWriter extends Writer {
     /**
      * Set the column where the equal sign appears on property lines. Defaults to 24.
      * Setting the indent to 0 means that the equal sign will not be aligned at all.
-     * 
+     *
      * @param pos
      *            Column of the equal sign.
      */
@@ -82,7 +81,7 @@ public class PropertiesWriter extends Writer {
      * Set the column where the text continues after line wrapping. Defaults to 4. Setting
      * the wrap indent to 0 means that after wrapping, the next line will start left
      * aligned to position 0.
-     * 
+     *
      * @param pos
      *            Column where text continues after wrapping.
      */
@@ -97,7 +96,7 @@ public class PropertiesWriter extends Writer {
      * will disable wrapping at all.
      * <p>
      * Note that this is just a hint for the Writer. A line may still exceed this limit.
-     * 
+     *
      * @param max
      *            Proposed maximum line length.
      */
@@ -115,7 +114,7 @@ public class PropertiesWriter extends Writer {
      * Write a char array to the output stream. It is required that all characters in the
      * array are ISO-8859-1 encodable. If a char cannot be encoded, an exception will be
      * thrown.
-     * 
+     *
      * @param cbuf
      *            Char array to be sent.
      * @param off
@@ -146,7 +145,7 @@ public class PropertiesWriter extends Writer {
 
     /**
      * Flushes the stream.
-     * 
+     *
      * @throws IOException
      *             if could not flush.
      */
@@ -159,7 +158,7 @@ public class PropertiesWriter extends Writer {
 
     /**
      * Closes the stream.
-     * 
+     *
      * @throws IOException
      *             if could not close.
      */
@@ -177,7 +176,7 @@ public class PropertiesWriter extends Writer {
 
     /**
      * Write a line separator according to the underlying operating system.
-     * 
+     *
      * @throws IOException
      *             if could not write.
      */
@@ -190,7 +189,7 @@ public class PropertiesWriter extends Writer {
      * unicode escaped. Special control characters are specially escaped. Leading spaces
      * will also be escaped. This method is the only proper way to send Strings to the
      * stream that are fully unicode capable.
-     * 
+     *
      * @param str
      *            String to be sent
      * @throws IOException
@@ -204,7 +203,7 @@ public class PropertiesWriter extends Writer {
      * Write an indented string. It is guaranteed that at least the indention position of
      * a line is reached after this method. It must only be invoked at the beginning of a
      * line, though.
-     * 
+     *
      * @param str
      *            String to be sent. Will be properly escaped.
      * @return Number of characters actually written.
@@ -222,7 +221,7 @@ public class PropertiesWriter extends Writer {
      * Write a properties key as indented string. It is guaranteed that at least the
      * indention position of a line is reached after this method. This method is only made
      * for keys, and takes care for proper escaping of special chars within the key.
-     * 
+     *
      * @param str
      *            String to be sent. Will be properly escaped.
      * @return Number of characters actually written.
@@ -263,7 +262,7 @@ public class PropertiesWriter extends Writer {
      * <p>
      * If the string would not fit the line, a line wrap is inserted and the string
      * contents are written to the next line or lines.
-     * 
+     *
      * @param str
      *            String to be sent. Will be properly escaped.
      * @param mark
@@ -295,7 +294,7 @@ public class PropertiesWriter extends Writer {
      * <p>
      * Note that this method will always wrap, even if the String would fit into the
      * current line.
-     * 
+     *
      * @param str
      *            String to be written.
      * @throws IOException
@@ -325,7 +324,7 @@ public class PropertiesWriter extends Writer {
     /**
      * Write a single wrapped line. This line will also be wrapped at spaces if it gets
      * too long.
-     * 
+     *
      * @param line
      *            Line to be written.
      * @throws IOException
@@ -363,7 +362,7 @@ public class PropertiesWriter extends Writer {
 
     /**
      * Write the indention spaces for wrap indention.
-     * 
+     *
      * @throws IOException
      *             if could not write.
      */
@@ -377,7 +376,7 @@ public class PropertiesWriter extends Writer {
 
     /**
      * Write a Line object to the Writer stream.
-     * 
+     *
      * @param l
      *            Line to be written.
      * @throws IOException
@@ -397,7 +396,7 @@ public class PropertiesWriter extends Writer {
      * Escape a String. Characters not encodable in ISO-8859-1 are unicode escaped.
      * Additionally, some special control characters are replaced by their escape
      * sequence. Optionally leading white spaces can be escaped too.
-     * 
+     *
      * @param str
      *            String to be converted
      * @param esc

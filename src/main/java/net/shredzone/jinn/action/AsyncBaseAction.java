@@ -35,16 +35,15 @@ import javax.swing.KeyStroke;
  * The <code>perform()</code> method is always executed in an own thread, not in the AWT
  * dispatch thread. If you manipulate Swing objects, remember to use
  * <code>EventQueue.invokeLater()</code>.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: AsyncBaseAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public abstract class AsyncBaseAction extends BaseAction {
     private static final long serialVersionUID = 8756416480105882092L;
 
     /**
      * Create a new, asynchronous Action.
-     * 
+     *
      * @param name
      *            Action Name
      * @param icon
@@ -60,7 +59,7 @@ public abstract class AsyncBaseAction extends BaseAction {
 
     /**
      * The action has been invoked from a button, menu item etc.
-     * 
+     *
      * @param e
      *            ActionEvent
      */
@@ -68,6 +67,7 @@ public abstract class AsyncBaseAction extends BaseAction {
     public void actionPerformed(final ActionEvent e) {
         // --- Create background thread ---
         Thread thread = new Thread(new Runnable() {
+            @Override
             public void run() {
                 Cursor cursor = null;
 

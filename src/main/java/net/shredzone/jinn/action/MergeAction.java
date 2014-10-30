@@ -42,9 +42,8 @@ import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * Merge a reference properties file
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: MergeAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class MergeAction extends AsyncBaseAction {
     private static final long serialVersionUID = -8530332702108753687L;
@@ -52,7 +51,7 @@ public class MergeAction extends AsyncBaseAction {
 
     /**
      * Create a new MergeAction.
-     * 
+     *
      * @param registry
      *            The application's Registry
      */
@@ -64,6 +63,7 @@ public class MergeAction extends AsyncBaseAction {
         setEnabled(registry.get(JinnRegistryKeys.FILE_TRANSLATION) != null);
 
         registry.addPropertyChangeListener(JinnRegistryKeys.FILE_TRANSLATION, new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 setEnabled(evt.getNewValue() != null);
             }
@@ -72,7 +72,7 @@ public class MergeAction extends AsyncBaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */

@@ -19,27 +19,28 @@
  */
 package net.shredzone.jinn.gui;
 
-import net.shredzone.jinn.i18n.L;
-
-import java.awt.*;
+import java.awt.Component;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.MessageFormat;
 
-import javax.swing.*;
-import java.text.*;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import net.shredzone.jinn.i18n.L;
 
 /**
  * Informs the user about an Exception that has occured.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: ExceptionDialog.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class ExceptionDialog {
     private static boolean debugMode = false;
 
     /**
      * Set the debug mode. If set, a stacktrace will be shown along with the dialog.
-     * 
+     *
      * @param mode
      *            true: debug mode, false: standard mode
      */
@@ -49,7 +50,7 @@ public class ExceptionDialog {
 
     /**
      * Check if the debug mode is enabled.
-     * 
+     *
      * @return true: debug mode, false: standard mode
      */
     public static boolean isDebug() {
@@ -58,7 +59,7 @@ public class ExceptionDialog {
 
     /**
      * Show an exception dialog if an exception occured.
-     * 
+     *
      * @param parent
      *            Parent component to be locked during dialog
      * @param op

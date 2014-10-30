@@ -31,9 +31,8 @@ import net.shredzone.jinn.property.PropertyModel;
  * <p>
  * The PropertyViewer is merely a JList, but with a SINGLE_SELECTION model turned on by
  * default.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: PropertyViewer.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class PropertyViewer extends JList {
     private static final long serialVersionUID = -3305575282409649481L;
@@ -47,7 +46,7 @@ public class PropertyViewer extends JList {
 
     /**
      * Create a PropertyViewer for a given PropertyModel.
-     * 
+     *
      * @param model
      *            PropertyModel to show.
      */

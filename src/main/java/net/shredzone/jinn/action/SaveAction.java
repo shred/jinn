@@ -42,9 +42,8 @@ import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * Save a properties file
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SaveAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class SaveAction extends AsyncBaseAction {
     private static final long serialVersionUID = -1701159023065148732L;
@@ -52,7 +51,7 @@ public class SaveAction extends AsyncBaseAction {
 
     /**
      * Create a new SaveAction.
-     * 
+     *
      * @param registry
      *            The application's Registry
      */
@@ -65,6 +64,7 @@ public class SaveAction extends AsyncBaseAction {
             && (registry.is(JinnRegistryKeys.FLAG_CHANGED)));
 
         registry.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 String name = evt.getPropertyName();
                 if (name.equals(JinnRegistryKeys.FILE_TRANSLATION)
@@ -78,7 +78,7 @@ public class SaveAction extends AsyncBaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */
@@ -89,7 +89,7 @@ public class SaveAction extends AsyncBaseAction {
 
     /**
      * Saves the current properties file.
-     * 
+     *
      * @param parent
      *            Parent component to block
      * @return true: Save was successful, false: Save failed

@@ -44,9 +44,8 @@ import net.shredzone.jinn.property.PropertyModel;
 
 /**
  * Save a properties file to another file.
- * 
- * @author Richard Körber &lt;dev@shredzone.de&gt;
- * @version $Id: SaveAsAction.java 315 2009-05-13 19:32:40Z shred $
+ *
+ * @author Richard "Shred" Körber
  */
 public class SaveAsAction extends AsyncBaseAction {
     private static final long serialVersionUID = -5321317574685533552L;
@@ -54,7 +53,7 @@ public class SaveAsAction extends AsyncBaseAction {
 
     /**
      * Create a new SaveAsAction.
-     * 
+     *
      * @param registry
      *            The application's Registry
      */
@@ -67,6 +66,7 @@ public class SaveAsAction extends AsyncBaseAction {
             && (registry.is(JinnRegistryKeys.FLAG_CHANGED)));
 
         registry.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 String name = evt.getPropertyName();
                 if (name.equals(JinnRegistryKeys.FILE_TRANSLATION)
@@ -80,7 +80,7 @@ public class SaveAsAction extends AsyncBaseAction {
 
     /**
      * The action implementation itself.
-     * 
+     *
      * @param e
      *            ActionEvent, may be null if directly invoked
      */
