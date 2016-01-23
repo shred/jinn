@@ -15,13 +15,13 @@
         </license>
     </licenses>
     <scm>
-        <url>scm:git:git@github.com:shred/jinn.git</url>
+        <url>https://github.com/shred/jinn/</url>
         <connection>scm:git:git@github.com:shred/jinn.git</connection>
         <developerConnection>scm:git:git@github.com:shred/jinn.git</developerConnection>
     </scm>
     <issueManagement>
-        <system>Redmine</system>
-        <url>http://www.shredzone.org/projects/jinn/issues</url>
+        <system>GitHub Issues</system>
+        <url>https://github.com/shred/jinn/issues</url>
     </issueManagement>
     <developers>
         <developer>
